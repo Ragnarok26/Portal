@@ -27,7 +27,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
 //Services
-import { getBaseUrl } from '../main';
+// import { getBaseUrl } from '../main';
 import { MessageService } from 'primeng/api';
 import { LoginService } from './services/login/login.service';
 import { ClientService } from './services/client/client.service';
@@ -65,13 +65,20 @@ import { ClientService } from './services/client/client.service';
     MessageService,
     LoginService,
     ClientService,
-    {
-      provide: 'BASE_URL',
-      useFactory: getBaseUrl
-    }
+    // {
+    //   provide: 'BASE_URL',
+    //   useFactory: getBaseUrl
+    // }
+    { provide: 'BASE_URL', useFactory: getBaseUrl },
   ],
   bootstrap: [
     AppComponent
   ]
 })
 export class AppModule { }
+
+
+export function getBaseUrl() {
+	return document.getElementsByTagName('base')[0].href;
+}
+
