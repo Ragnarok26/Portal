@@ -21,6 +21,11 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { PanelMenuModule } from 'primeng/panelmenu';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -31,11 +36,15 @@ import { LoginComponent } from './components/login/login.component';
 import { MessageService } from 'primeng/api';
 import { LoginService } from './services/login/login.service';
 import { ClientService } from './services/client/client.service';
+import { HomeComponent } from './components/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
@@ -60,6 +69,9 @@ import { ClientService } from './services/client/client.service';
     InputTextModule,
     InputTextareaModule,
     TooltipModule,
+    MenuModule,
+    TieredMenuModule,
+    PanelMenuModule,
   ],
   providers: [
     MessageService,
@@ -79,6 +91,6 @@ export class AppModule { }
 
 
 export function getBaseUrl() {
-	return document.getElementsByTagName('base')[0].href;
+  return document.getElementsByTagName('base')[0].href;
 }
 
