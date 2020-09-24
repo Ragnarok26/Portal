@@ -2,24 +2,37 @@
   <a class="hiddenanchor" id="toregister"></a>
   <a class="hiddenanchor" id="tologin"></a>
   <div id="wrapper">
+
     <div id="login" class="animate form">
       <section class="login_content">
-        <form>
+        <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
           <h1>Acceso a Portal CFDI</h1>
           <div>
-            <input type="text" class="form-control" placeholder="Correo" required="fallo" />
+            <input type="text" class="form-control" placeholder="Correo" name="email" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required />
+
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.required">Correo es requerido</div>
+            </div>
           </div>
           <div>
-            <input type="password" class="form-control" placeholder="Password" required="" />
+            <input type="password" class="form-control" placeholder="Password" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required />
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="password.errors.required">Paswword es requerido</div>
+            </div>
           </div>
           <div>
-            <a class="btn btn-default submit" href="index.html">Log in</a>
-            <a class="reset_pass" href="#">Perdiste tu Password?</a>
+
+            <div class="form-group">
+              <!--<a class="btn btn-default submit">Log in</a>-->
+              <button pButton label="Log in"
+                      icon="pi pi-check" class="btn btn-default submit"></button>
+            </div>
+            <a class="reset_pass" href="#">¿Perdiste tu Password?</a>
           </div>
           <div class="clearfix"></div>
           <div class="separator">
             <p class="change_link">
-              Nuevo Cliente?
+              ¿Nuevo Cliente?
               <a href="#toregister" class="to_register"> Crea una Cuenta</a>
             </p>
             <div class="clearfix"></div>
@@ -53,7 +66,7 @@
           <div class="clearfix"></div>
           <div class="separator">
             <p class="change_link">
-              Ya eres cliente?
+              ¿Ya eres cliente?
               <a href="#tologin" class="to_register"> Log in </a>
             </p>
             <div class="clearfix"></div>

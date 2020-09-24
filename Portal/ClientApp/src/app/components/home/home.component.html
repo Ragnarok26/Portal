@@ -1,1 +1,25 @@
-<p>home works!</p>
+
+<p>
+  home works!
+</p>
+<div>
+  <header id="app-header" class="p-grid">
+    <div id="app-branding" class="p-col-10 p-md-12">
+      <div id="app-name">
+
+      </div>
+    </div>
+  </header>
+
+  <main id="app-content" class="p-main-content">
+
+    <app-menu></app-menu>
+  </main>
+  <footer id="app-footer" class="p-grid p-foot" *ngIf="hasToken">
+    <div class="p-col">
+      <p class="text-left" i18n="@@angularVersion">
+        Version Portal: {{version}}
+      </p>
+    </div>
+  </footer>
+</div>
