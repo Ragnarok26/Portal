@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { MenuService } from 'src/app/services/menu/menu.service';
+import { MainMenuItem } from '../../models/menu/MainMenuItem';
+import { MainDirective } from 'src/app/directives/main/main.directive';
 
 @Component({
   selector: 'app-menu',
@@ -8,23 +11,31 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
 
+  @ViewChild(MainDirective, { static: true }) mainDirective: MainDirective;
+
+  mainMenuItems: MainMenuItem[];
   MenuItems: MenuItem[];
-  constructor() { }
+  constructor(private menuService: MenuService, private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
+    this.mainMenuItems = this.menuService.getItems();
 
 
     this.MenuItems = [
 
-      {label: 'Home', icon: 'ui-menuitem-icon ng-tns-c4-0 ng-star-inserted'},
-      //{
-      //	label: 'Operations',
-      //	icon: 'ui-menuitem-icon ng-tns-c4-0 - regions_gtps_menu ng-star-inserted',
-      //	command: () => { this.load(2); this.sideBarDisplay = !this.sideBarDisplay; }
-      //}
+      { label: 'Home', icon: 'ui-menuitem-icon ng-tns-c4-0 ng-star-inserted' },
+
 
     ]
 
+  }
+
+  public load(index: number | null) {
+    const item = this.mainMenuItems[index];
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
+    const viewContainerRef = this.mainDirective.viewContainerRef;
+    viewContainerRef.clear();
+    const componentRef = viewContainerRef.createComponent(componentFactory);
   }
 
 }

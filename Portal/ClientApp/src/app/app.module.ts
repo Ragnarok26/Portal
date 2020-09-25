@@ -38,6 +38,10 @@ import { LoginService } from './services/login/login.service';
 import { ClientService } from './services/client/client.service';
 import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ManagementComponent } from './components/management/management.component';
+import { ConciliationComponent } from './components/conciliation/conciliation.component';
+import { AuditComponent } from './components/audit/audit.component';
+import { MenuService } from './services/menu/menu.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,9 @@ import { MenuComponent } from './components/menu/menu.component';
     LoginComponent,
     HomeComponent,
     MenuComponent,
+    ManagementComponent,
+    ConciliationComponent,
+    AuditComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
@@ -77,6 +84,7 @@ import { MenuComponent } from './components/menu/menu.component';
     MessageService,
     LoginService,
     ClientService,
+    MenuService,
     // {
     //   provide: 'BASE_URL',
     //   useFactory: getBaseUrl
