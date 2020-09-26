@@ -34,7 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 //Services
 // import { getBaseUrl } from '../main';
 import { MessageService } from 'primeng/api';
-import { LoginService } from './services/login/login.service';
+import { UserService } from './services/user/user.service';
 import { ClientService } from './services/client/client.service';
 import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -43,6 +43,7 @@ import { ConciliationComponent } from './components/conciliation/conciliation.co
 import { AuditComponent } from './components/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import {AuthenticationService} from './services/auth/authentication.service';
 
 @NgModule({
   declarations: [
@@ -85,9 +86,10 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass.component
   ],
   providers: [
     MessageService,
-    LoginService,
+    UserService,
     ClientService,
     MenuService,
+    AuthenticationService,
     // {
     //   provide: 'BASE_URL',
     //   useFactory: getBaseUrl
