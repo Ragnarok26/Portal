@@ -14,28 +14,44 @@ export class MenuComponent implements OnInit {
   @ViewChild(MainDirective, { static: true }) mainDirective: MainDirective;
 
   mainMenuItems: MainMenuItem[];
-  MenuItems: MenuItem[];
-  constructor(private menuService: MenuService, private componentFactoryResolver: ComponentFactoryResolver) { }
+  items: MenuItem[];
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    this.mainMenuItems = this.menuService.getItems();
+    //  this.mainMenuItems = this.menuService.getItems();
 
 
-    this.MenuItems = [
+    this.items = [
 
-      { label: 'Home', icon: 'ui-menuitem-icon ng-tns-c4-0 ng-star-inserted' },
-
+      {
+        label: 'Home',
+        icon: 'pi pi-home',
+        items: [
+          {
+            label: 'Gestion CFDI',
+            icon: 'pi pi-fw pi-align-left'
+          },
+          {
+            label: 'Conciliación de pagos',
+            icon: 'pi pi-fw pi-align-right'
+          },
+          {
+            label: 'Auditoría fiscal',
+            icon: 'pi pi-fw pi-align-center'
+          }
+        ]
+      },
 
     ]
 
   }
 
-  public load(index: number | null) {
-    const item = this.mainMenuItems[index];
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
-    const viewContainerRef = this.mainDirective.viewContainerRef;
-    viewContainerRef.clear();
-    const componentRef = viewContainerRef.createComponent(componentFactory);
-  }
+  //public load(index: number | null) {
+  //  const item = this.mainMenuItems[index];
+  //  const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
+  //  const viewContainerRef = this.mainDirective.viewContainerRef;
+  //  viewContainerRef.clear();
+  //  const componentRef = viewContainerRef.createComponent(componentFactory);
+  //}
 
 }

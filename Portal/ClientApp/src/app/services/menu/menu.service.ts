@@ -11,7 +11,7 @@ export class MenuService {
 
   getItems() {
     return [
-      new MainMenuItem(HomeComponent)
+      new MainMenuItem(ConciliationComponent)
       //new MainMenuItem(ManagementComponent),
       //new MainMenuItem(ConciliationComponent),
       //new MainMenuItem(AuditComponent)

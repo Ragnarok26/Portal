@@ -22,9 +22,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
 import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 //Components
@@ -42,6 +42,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { ConciliationComponent } from './components/conciliation/conciliation.component';
 import { AuditComponent } from './components/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
+import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MenuService } from './services/menu/menu.service';
     ManagementComponent,
     ConciliationComponent,
     AuditComponent,
+    ResetPassComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
@@ -79,6 +81,7 @@ import { MenuService } from './services/menu/menu.service';
     MenuModule,
     TieredMenuModule,
     PanelMenuModule,
+    ReactiveFormsModule,
   ],
   providers: [
     MessageService,

@@ -27,6 +27,7 @@
     <None Remove="ClientApp\src\app\directives\main\main.directive.ts" />
     <None Remove="ClientApp\src\app\models\menu\MainMenuItem.ts" />
     <None Remove="ClientApp\src\app\models\Response.ts" />
+    <None Remove="ClientApp\src\app\models\User.ts" />
     <None Remove="ClientApp\src\app\services\menu\menu.service.ts" />
   </ItemGroup>
 
@@ -38,6 +39,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\directives\main\main.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\menu\MainMenuItem.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Response.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\User.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\menu\menu.service.ts" />
   </ItemGroup>
 

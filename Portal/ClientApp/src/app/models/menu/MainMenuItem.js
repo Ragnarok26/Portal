@@ -8,4 +8,4 @@ var MainMenuItem = /** @class */ (function () {
     return MainMenuItem;
 }());
 exports.MainMenuItem = MainMenuItem;
-//# sourceMappingURL=MenuItem.js.map
+//# sourceMappingURL=MainMenuItem.js.map
