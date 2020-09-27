@@ -29,8 +29,8 @@
   }
 
 .site_title i {
-  border: 1px solid #EAEAEA;
-  padding: 5px 6px;
+  /*border: 1px solid #EAEAEA;
+  padding: 5px 6px;*/
   border-radius: 50%;
 }
 
@@ -199,12 +199,12 @@
 }
 
 .nav_menu {
-  float: left;
   background: #EDEDED;
   border-bottom: 1px solid #D9DEE4;
   margin-bottom: 10px;
   width: 100%;
   position: relative;
+  height: 57px;
 }
 
 @media (min-width: 480px) {

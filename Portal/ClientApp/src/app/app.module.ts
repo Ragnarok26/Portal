@@ -24,6 +24,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { SidebarModule } from 'primeng/sidebar';
+import {PanelModule} from 'primeng/panel';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -44,6 +46,7 @@ import { AuditComponent } from './components/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 import {AuthenticationService} from './services/auth/authentication.service';
+import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import {AuthenticationService} from './services/auth/authentication.service';
     ConciliationComponent,
     AuditComponent,
     ResetPassComponent,
+    TopMenuComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
@@ -83,6 +87,8 @@ import {AuthenticationService} from './services/auth/authentication.service';
     TieredMenuModule,
     PanelMenuModule,
     ReactiveFormsModule,
+    SidebarModule,
+    PanelModule,
   ],
   providers: [
     MessageService,

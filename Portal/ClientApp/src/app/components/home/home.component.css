@@ -1,3 +1,23 @@
-.menuSide {
 
+.sideMenu {
+  width: 230px;
+  height: 99vh;
+  float: left;
+  background-color: #20B31D;
+}
+
+.mainContainer {
+  margin-left: 24vh;
+  height: 98vh;
+}
+
+.topMenu {
+  width: 88vw;
+  height: 10vh;
+}
+
+.grid {
+  height: 88vh;
+  width: 90vw;
+  background-color: #F7F7F7;
 }

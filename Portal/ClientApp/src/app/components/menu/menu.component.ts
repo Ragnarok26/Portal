@@ -21,31 +21,51 @@ export class MenuComponent implements OnInit {
     //  this.mainMenuItems = this.menuService.getItems();
 
 
-    this.items = [
+    //  this.items = [
 
+    //        {
+    //          label: 'Gestion CFDI',
+    //          icon: 'pi pi-fw  pi-circle-on'
+    //        },
+    //        {
+    //          label: 'Conciliación de pagos',
+    //          icon: 'pi pi-fw  pi-circle-on'
+    //        },
+    //        {
+    //          label: 'Auditoría fiscal',
+    //          icon: 'pi pi-fw pi-circle-on'
+    //        }
+
+
+    //  ]
+
+    //}
+
+    this.items = [
       {
-        label: 'Home',
-        icon: 'pi pi-home',
+        label: 'Menu',
+        icon: 'pi pi-pw pi-home',
         items: [
           {
-            label: 'Gestion CFDI',
-            icon: 'pi pi-fw pi-align-left'
+              label: 'Gestion CFDI',
+              icon: 'pi pi-fw  pi-circle-on'
           },
-          {
-            label: 'Conciliación de pagos',
-            icon: 'pi pi-fw pi-align-right'
+          { separator: true },
+            {
+              label: 'Conciliación de pagos',
+              icon: 'pi pi-fw  pi-circle-on'
           },
-          {
-            label: 'Auditoría fiscal',
-            icon: 'pi pi-fw pi-align-center'
-          }
+                    { separator: true },
+            {
+              label: 'Auditoría fiscal',
+              icon: 'pi pi-fw pi-circle-on'
+            }
         ]
-      },
+      }
+      
 
-    ]
-
+    ];
   }
-
   //public load(index: number | null) {
   //  const item = this.mainMenuItems[index];
   //  const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);
