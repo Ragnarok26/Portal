@@ -18,14 +18,17 @@
 
       </div>
       <div class="side-menu">
-        <app-menu></app-menu>
+        <app-menu [@slideInOut]="menuState"></app-menu>
       </div>
     </section>
   </div>
   <div class="mainContainer">
-
+    <button (click)="toggleMenu()" class="hamburger nav toggle">
+      <span></span>
+    </button>
     <app-top-menu></app-top-menu>
 
     <div class="grid"></div>
   </div>
 </div>
+

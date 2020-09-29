@@ -25,8 +25,9 @@ import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
-import {PanelModule} from 'primeng/panel';
+import { PanelModule} from 'primeng/panel';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 //Components
