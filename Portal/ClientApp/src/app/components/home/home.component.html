@@ -1,26 +1,6 @@
 <div style="width: 100%;">
-  <div class="sideMenu">
-    <section class="container">
-      <div class="aside" name="infoUser" style="padding-bottom:8em;">
-        <div class="navbar nav_title" style="border: 0;">
-          <a class="site_title"><i class="pi pi-fw pi-cog fa fa-dashboard"></i> <span>Portal CFDI</span></a>
-        </div>
-        <div class="clearfix"></div>
-        <div class="profile">
-          <div class="profile_pic">
-            <img src="../../../assets/images/user.png" alt="..." class="img-circle profile_img">
-          </div>
-          <div class="profile_info">
-            <span>Bienvenido,</span>
-            <h2>Sergio</h2>
-          </div>
-        </div>
-
-      </div>
-      <div class="side-menu">
-        <app-menu [@slideInOut]="menuState"></app-menu>
-      </div>
-    </section>
+  <div [@slideInOut]="menuState" class="fa fa-chevron-down sideMenu">
+    <app-side-menu></app-side-menu>
   </div>
   <div class="mainContainer">
     <button (click)="toggleMenu()" class="hamburger nav toggle">

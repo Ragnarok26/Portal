@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/models/User';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-reset-pass',
@@ -10,7 +14,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ResetPassComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  loading: boolean;
+  user= new User();
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService, private messageService: MessageService ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -28,7 +35,27 @@ export class ResetPassComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/login']);
+    this.user = this.registerForm.value;
+    //this.user = new User(this.registerForm.value);
+    this.userService.update(      
+      this.user,
+      (response: Models.Response<number | null>) => {
+        if (response.success) {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tu contraseña ha sido enviada por correo.' });
+          this.loading = false;
+          this.router.navigate(['/login']);
+        }
+        else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message });
+          this.loading = false;
+        }
+      },
+      (error: any) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+        this.loading = false;
+      }
+    );
+
   }
 
 }

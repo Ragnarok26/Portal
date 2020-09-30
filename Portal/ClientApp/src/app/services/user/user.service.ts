@@ -13,7 +13,7 @@ export class UserService {
   }
 
   getById(id: number, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/` + id, successCallback, errorCallback);
+    this.webApiService.get(`/users/GetById` + id, successCallback, errorCallback);
   }
 
   register(user: User, successCallback: any, errorCallback: any) {
@@ -21,10 +21,15 @@ export class UserService {
   }
 
   update(user: User, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/` + user.idUser, user, successCallback, errorCallback);
+    this.webApiService.put(`/users/` + user.idUser, user, successCallback, errorCallback);
   }
 
   delete(id: number, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/` + id, successCallback, errorCallback);
+    this.webApiService.delete(`/users/delete` + id, successCallback, errorCallback);
   }
+
+  changePassword(user: User, successCallback: any, errorCallback: any) {
+    this.webApiService.put(`/users/changePass`, user, successCallback, errorCallback);
+  }
+
 }
