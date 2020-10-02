@@ -1,4 +1,5 @@
 ﻿using Data.User.Interface;
+using DBConnection.Data;
 using Entity.Common;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +12,6 @@ namespace Data.User
     /// </summary>
     public class User : IUser
     {
-
         public void Dispose()
         {
         }
@@ -30,36 +30,36 @@ namespace Data.User
             int? rowsAffected = null;
 
             SqlParameterCollection outputParameters = null;
-            StoredProceduresConfiguration UpdateUserSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["UpdateUser"];
-            string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
+            //StoredProceduresConfiguration UpdateUserSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["UpdateUser"];
+            //string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
 
-            //using (Connection connection = new Connection(ConnectionString))
-            //{
-            //    List<SqlParameter> parameters = new List<SqlParameter>
-            //    {
-            //        new SqlParameter
-            //        {
-            //            SqlDbType = SqlDbType.Int,
-            //            Direction = ParameterDirection.Input,
-            //            ParameterName = "@IdUSer",
-            //            Value = user.idUser
-            //        },
-            //        new SqlParameter
-            //        {
-            //            DbType = DbType.Int32,
-            //            Direction = ParameterDirection.Output,
-            //            ParameterName = "@rowsAffected"
-            //        }
-            //    };
-            //    connection.ExecuteStoredProcedure<int>($"{UpdateUserSpConfig.StoredProcedureName}", parameters, out outputParameters);
-            //    if (outputParameters != null)
-            //    {
-            //        if (outputParameters.IndexOf("@rowsAffected") > -1)
-            //        {
-            //            rowsAffected = (int)outputParameters["@rowsAffected"].Value;
-            //        }
-            //    }
-            //}
+            using (Connection connection = new Connection($""))
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                    new SqlParameter
+                    {
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@IdUSer",
+                        //Value = user.idUser
+                    },
+                    new SqlParameter
+                    {
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Output,
+                        ParameterName = "@rowsAffected"
+                    }
+                };
+                connection.ExecuteStoredProcedure<int>($"", parameters, out outputParameters);
+                if (outputParameters != null)
+                {
+                    if (outputParameters.IndexOf("@rowsAffected") > -1)
+                    {
+                        rowsAffected = (int)outputParameters["@rowsAffected"].Value;
+                    }
+                }
+            }
             return rowsAffected;
 
         }
