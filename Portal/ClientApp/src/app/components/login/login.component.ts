@@ -5,6 +5,8 @@ import { User } from '../../models/User';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { first } from 'rxjs/operators';
+import { UserService } from '../../services/user/user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +20,14 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loading = false;
   returnUrl: string;
+  userServ: User[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authenticationService: AuthenticationService) { }
+  constructor(private messageService: MessageService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -46,11 +54,34 @@ export class LoginComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+    else {
+      this.userService.get(
+        (resp: Models.Response<User[]>) => {
+          if (resp.success) {
+            //resp.responseData.forEach(
+            //  (role, index) => {
+            //    role.Status = new Catalog();
+            //    role.Status.id = role.statusId;
+            //    role.Status.description = role.statusDescription;
+            //  }
+            //)
+            //   this.userServ = resp.responseData;
+            this.router.navigate(['/home']);
+          }
+          else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
+          }
+          this.loading = false;
+        },
+        (error: any) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+          this.loading = false;
+        }
+      );
 
-    this.router.navigate(['/home']);
+    }
 
-
-    this.loading = true;
+    //this.loading = true;
     
   }
 }

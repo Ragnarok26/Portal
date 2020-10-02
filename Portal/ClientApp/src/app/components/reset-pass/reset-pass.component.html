@@ -1,3 +1,5 @@
+
+<p-messages></p-messages>
 <div class="">
   <a class="hiddenanchor" id="toregister"></a>
   <a class="hiddenanchor" id="tologin"></a>
@@ -6,7 +8,7 @@
     <div id="login" class="animate form">
       <section class="login_content">
         <form [formGroup]="registerForm" (ngSubmit)="reset_pass()">
-          <h1>Recuperación de contraseña  Portal CFDI </h1>
+          <h1>Recuperación de contraseña</h1>
           <div class="form-group">
             <input type="text" placeholder="Correo" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
             <div *ngIf="submitted && f.email.errors" class="invalid-feedback">

@@ -21,3 +21,49 @@
   width: 90vw;
   background-color: #F7F7F7;
 }
+
+.hamburger {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  font-size: 0;
+  text-indent: -9999px;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: 0;
+}
+
+
+  .hamburger span {
+    display: block;
+    position: absolute;
+    top: 44px;
+    left: 18px;
+    right: 18px;
+    height: 4px;
+    background: #5A738E;
+  }
+
+    .hamburger span::before,
+    .hamburger span::after {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background-color: #5A738E;
+      content: "";
+    }
+
+    .hamburger span::before {
+      top: -20px;
+    }
+
+    .hamburger span::after {
+      bottom: -20px;
+    }

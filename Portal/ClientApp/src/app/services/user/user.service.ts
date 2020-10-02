@@ -9,22 +9,27 @@ export class UserService {
   constructor(private webApiService: ClientService) { }
 
   get( successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/`, successCallback, errorCallback);
+    this.webApiService.get(`User`, successCallback, errorCallback);
   }
 
   getById(id: number, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/` + id, successCallback, errorCallback);
+    this.webApiService.get(`User/GetById` + id, successCallback, errorCallback);
   }
 
   register(user: User, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/register`, user, successCallback, errorCallback);
+    this.webApiService.get(`User/register`, user, successCallback, errorCallback);
   }
 
   update(user: User, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/` + user.idUser, user, successCallback, errorCallback);
+    this.webApiService.put(`User/` + user.idUser, user, successCallback, errorCallback);
   }
 
   delete(id: number, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`/users/` + id, successCallback, errorCallback);
+    this.webApiService.delete(`User/delete` + id, successCallback, errorCallback);
   }
+
+  changePassword(user: User, successCallback: any, errorCallback: any) {
+    this.webApiService.put(`User/changePass`, user, successCallback, errorCallback);
+  }
+
 }

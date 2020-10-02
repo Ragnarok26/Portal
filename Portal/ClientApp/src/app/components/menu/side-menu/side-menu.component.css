@@ -1,0 +1,17 @@
+
+.sideMenu {
+  width: 230px;
+  height: 99vh;
+  float: left;
+  background-color: #20B31D;
+}
+
+.mainContainer {
+  margin-left: 24vh;
+  height: 98vh;
+}
+
+.topMenu {
+  width: 88vw;
+  height: 10vh;
+}
