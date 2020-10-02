@@ -43,7 +43,8 @@ export class ResetPassComponent implements OnInit {
         if (response.success) {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tu contraseña ha sido enviada por correo.' });
           this.loading = false;
-          this.router.navigate(['/login']);
+          console.log('actualizó')
+        //  this.router.navigate(['/login']);
         }
         else {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message });
