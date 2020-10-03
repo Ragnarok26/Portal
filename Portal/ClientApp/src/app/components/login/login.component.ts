@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: string;
   userServ: User[];
+  displayModal  : boolean = false;
+
 
   constructor(private messageService: MessageService,
     private route: ActivatedRoute,
@@ -55,18 +57,33 @@ export class LoginComponent implements OnInit {
       return;
     }
     else {
-      this.userService.get(
-        (resp: Models.Response<User[]>) => {
+      let userForm: User;
+      userForm = <User>this.registerForm.value;
+      userForm.IsActive = false;
+      userForm.IsNew = false;
+      userForm.LastName = null;
+      userForm.Name = null;
+      userForm.IdUser = 1;
+
+      let userLogin: User[] = [userForm];
+      this.userService.login(
+        userLogin,
+        (resp: Models.Response<User>) => {
           if (resp.success) {
-            //resp.responseData.forEach(
-            //  (role, index) => {
-            //    role.Status = new Catalog();
-            //    role.Status.id = role.statusId;
-            //    role.Status.description = role.statusDescription;
-            //  }
-            //)
-            //   this.userServ = resp.responseData;
-            this.router.navigate(['/home']);
+
+            if (resp.responseData[0] != undefined) {
+              if (resp.responseData[0].isNew) {
+                this.displayModal = true;
+              }
+
+              else {
+                this.router.navigate(['/home']);
+              }
+            }
+            else {
+              this.messageService.add({ severity: 'Warning', summary: 'Warning', detail: 'Usuario y/o contraseña incorrecta' });
+            }
+
           }
           else {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
@@ -81,8 +98,6 @@ export class LoginComponent implements OnInit {
 
     }
 
-    //this.loading = true;
-    
   }
 }
 

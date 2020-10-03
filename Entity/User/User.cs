@@ -12,32 +12,32 @@ namespace Entity.User
         /// <summary>
         /// 
         /// </summary>
-        public int idUser { get; set; }
+        public int IdUser { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string name { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string email { get; set; }
+        public string Email { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string password { get; set; }
+        public string Password { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public bool isActive { get; set; }
+        public bool IsActive { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public bool isNew { get; set; }
+        public bool IsNew { get; set; }
 
-        public Rol rol { get; set; }
+        //public Rol rol { get; set; }
     }
 }

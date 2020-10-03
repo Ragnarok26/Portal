@@ -4,6 +4,7 @@ using Entity.Common;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Data.User
 {
@@ -18,6 +19,15 @@ namespace Data.User
         public IEnumerable<Entity.User.User> GetAllUser()
         {
             IEnumerable<Entity.User.User> users = new List<Entity.User.User>();
+
+            SqlParameterCollection outputParameters = null;
+
+            StoredProceduresConfiguration AllUsersSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["GetAllUsers"];
+            string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
+            using (Connection connection = new Connection(ConnectionString))
+            {
+                users = connection.ExecuteStoredProcedure<Entity.User.User>(AllUsersSpConfig.StoredProcedureName, null, out outputParameters);
+            }
             return users;
         }
         public IEnumerable<Entity.User.User> AddUser()
@@ -30,8 +40,8 @@ namespace Data.User
             int? rowsAffected = null;
 
             SqlParameterCollection outputParameters = null;
-            //StoredProceduresConfiguration UpdateUserSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["UpdateUser"];
-            //string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
+            StoredProceduresConfiguration UpdateUserSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["UpdateUser"];
+            string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
 
             using (Connection connection = new Connection($""))
             {
@@ -50,6 +60,7 @@ namespace Data.User
                         Direction = ParameterDirection.Output,
                         ParameterName = "@rowsAffected"
                     }
+
                 };
                 connection.ExecuteStoredProcedure<int>($"", parameters, out outputParameters);
                 if (outputParameters != null)
@@ -69,5 +80,42 @@ namespace Data.User
             return users;
         }
 
+        public IEnumerable<Entity.User.User> Login(IEnumerable<Entity.User.User> user)
+        {
+            IEnumerable<Entity.User.User> users = new List<Entity.User.User>();
+            int? rowsAffected = null;
+            SqlParameterCollection outputParameters = null;
+            StoredProceduresConfiguration GetUserLoginSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["GetUserByEmail"];
+            string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
+            using (Connection connection = new Connection(ConnectionString))
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                    new SqlParameter
+                    {
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@email",
+                        Value = user.FirstOrDefault().Email
+                    },
+
+                    new SqlParameter
+                    {
+                        DbType = DbType.Int32,
+                        Direction = ParameterDirection.Output,
+                        ParameterName = "@rowsAffected"
+                    }
+                };
+                users = connection.ExecuteStoredProcedure<Entity.User.User>(GetUserLoginSpConfig.StoredProcedureName, parameters, out outputParameters);
+                if (outputParameters != null)
+                {
+                    if (outputParameters.IndexOf("@rowsAffected") > -1)
+                    {
+                        rowsAffected = (int)outputParameters["@rowsAffected"].Value;
+                    }
+                }
+            }
+            return users;
+        }
     }
 }

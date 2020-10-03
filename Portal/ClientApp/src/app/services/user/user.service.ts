@@ -12,8 +12,8 @@ export class UserService {
     this.webApiService.get(`User`, successCallback, errorCallback);
   }
 
-  getById(id: number, successCallback: any, errorCallback: any) {
-    this.webApiService.get(`User/GetById` + id, successCallback, errorCallback);
+  login(user: User[], successCallback: any, errorCallback: any) {
+    this.webApiService.post(`User/Login`, user, successCallback, errorCallback);
   }
 
   register(user: User, successCallback: any, errorCallback: any) {
@@ -21,7 +21,7 @@ export class UserService {
   }
 
   update(user: User, successCallback: any, errorCallback: any) {
-    this.webApiService.put(`User/` + user.idUser, user, successCallback, errorCallback);
+    this.webApiService.put(`User/` + user.IdUser, user, successCallback, errorCallback);
   }
 
   delete(id: number, successCallback: any, errorCallback: any) {

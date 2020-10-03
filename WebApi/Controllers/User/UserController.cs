@@ -7,6 +7,9 @@ using Entity.Response;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Controllers.Common;
 using Entity.User;
+using Microsoft.AspNetCore.Authorization;
+using Entity.Common;
+
 namespace WebApi.Controllers.User
 {
     /// <summary>
@@ -21,6 +24,7 @@ namespace WebApi.Controllers.User
         /// </summary>
         /// <returns></returns>
         // GET: api/Management/User
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<Response<List<Entity.User.User>>> Get()
         {
@@ -29,6 +33,7 @@ namespace WebApi.Controllers.User
             Logic.Interface.IUser userFilter = new Logic.User.User();
             try
             {
+                string adas= Settings.Instance.DataConfiguration.ConnectionString;
                 response.Success = true;
                 response.ResponseData = (List<Entity.User.User>)userFilter.GetAllUser();
                 return Ok(response);
@@ -38,6 +43,32 @@ namespace WebApi.Controllers.User
                 response.Success = false;
                 response.Message = ex.Message;
                 response.ResponseData = new List<Entity.User.User>();
+                return StatusCode((int)HttpStatusCode.InternalServerError, response);
+            }
+            finally
+            {
+                response = null;
+                userFilter = null;
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Login")]
+        public ActionResult<Response<IEnumerable<Entity.User.User>>> Login([FromBody] IEnumerable<Entity.User.User> user)
+        {
+            Response<IEnumerable<Entity.User.User>> response = new Response<IEnumerable<Entity.User.User>>();
+            Logic.Interface.IUser userFilter = new Logic.User.User();
+            try
+            {
+                response.Success = true;
+                response.ResponseData = userFilter.Login(user);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+                response.ResponseData = null;
                 return StatusCode((int)HttpStatusCode.InternalServerError, response);
             }
             finally

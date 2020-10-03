@@ -32,6 +32,16 @@ namespace Logic.User
             }
             return rowsAffected;
         }
+        public IEnumerable<Entity.User.User> Login(IEnumerable<Entity.User.User> user)
+        {
+            IEnumerable<Entity.User.User> userLog = new List<Entity.User.User>();
+            using (IUser data = new Data.User.User())
+            {
+                userLog = data.Login(user);
+            }
+            return userLog;
+        }
+        
 
     }
 }

@@ -4,8 +4,7 @@ var Models;
         function Response() {
             this.success = false;
             this.message = "";
-            this.data = null;
-            this.rowCount = 0;
+            this.responseData = null;
         }
         return Response;
     }());

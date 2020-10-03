@@ -31,19 +31,19 @@
         {
             if (Environment == AppEnvironment.DEV)
             {
-                return Crypto.Decrypt(inputDev, cryptoKey, cryptoIv);
+                return inputDev;
             }
             else if (Environment == AppEnvironment.QA)
             {
-                return Crypto.Decrypt(inputQA, cryptoKey, cryptoIv);
+                return inputQA;
             }
             else if (Environment == AppEnvironment.PRODUCTION)
             {
-                return Crypto.Decrypt(inputProd, cryptoKey, cryptoIv);
+                return inputProd;
             }
             else
             {
-                return Crypto.Decrypt(inputDev, cryptoKey, cryptoIv);
+                return inputDev;
             }
         }
     }

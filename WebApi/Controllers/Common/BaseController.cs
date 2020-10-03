@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Entity.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers.Common
@@ -13,14 +14,14 @@ namespace WebApi.Controllers.Common
         /// <summary>
         /// 
         /// </summary>
-        //protected Settings Settings { get; set; }
+        protected Settings Settings { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public BaseController()
         {
-            //Settings = Settings.Instance;
+            Settings = Settings.Instance;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Resources;
 using System.Text;
 
 namespace Entity.Common
-{ 
+{
     public class Settings
     {
         /// <summary>
@@ -31,7 +31,7 @@ namespace Entity.Common
             }
         }
 
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -45,19 +45,19 @@ namespace Entity.Common
         /// <summary>
         /// 
         /// </summary>
-        public void Configure(ResourceManager resourceManager, CultureInfo resourceCulture)
+        public void Configure()
         {
-            if (DataConfiguration != null)
-            {
-                DataConfiguration.Environment = Environment;
-                DataConfiguration.Configure(resourceManager, resourceCulture);
-            }
-            if (FrontConfiguration != null)
-            {
-                FrontConfiguration.Environment = Environment;
-                FrontConfiguration.Configure(resourceManager, resourceCulture);
-            }
-            
+            //    if (DataConfiguration != null)
+            //    {
+            //        DataConfiguration.Environment = Environment;
+            //        DataConfiguration.Configure(resourceManager, resourceCulture);
+            //    }
+            //    if (FrontConfiguration != null)
+            //    {
+            //        FrontConfiguration.Environment = Environment;
+            //        FrontConfiguration.Configure(resourceManager, resourceCulture);
+            //    }
+
             Instance = this;
         }
     }

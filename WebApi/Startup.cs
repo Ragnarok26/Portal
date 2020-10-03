@@ -1,3 +1,4 @@
+using Entity.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -19,8 +20,8 @@ namespace WebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //Settings settings = Configuration.GetSection("settings").Get<Settings>();
-            //settings.Configure();
+            Settings settings = Configuration.GetSection("settings").Get<Settings>();
+            settings.Configure();
         }
 
         public IConfiguration Configuration { get; }
