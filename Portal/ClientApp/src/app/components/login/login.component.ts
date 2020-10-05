@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     this.submitted = true;
     if (this.registerForm.invalid) {
       return;
@@ -82,6 +83,7 @@ export class LoginComponent implements OnInit {
             }
             else {
               this.messageService.add({ severity: 'Warning', summary: 'Warning', detail: 'Usuario y/o contraseña incorrecta' });
+              this.loading = false;
             }
 
           }

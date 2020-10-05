@@ -45,16 +45,17 @@
     </div>
   </div>
 </div>
-<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000"
           [draggable]="false" [resizable]="false">
-  <p class="p-m-0">
-    Te invitamos a cambiar tu constraseña.
-    ¿Desear hacerlo en este momento?
-  </p>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="displayModal=false" label="Yes" class="p-button-text"></p-button>
-    <p-button icon="pi pi-times" (click)="displayModal=false" label="No"></p-button>
-  </ng-template>
+  
+    <div class="p-m-0">
+      Te invitamos a cambiar tu constraseña.
+      ¿Desear hacerlo en este momento?
+    </div>
+    <div>
+      <p-button icon="pi pi-check" (click)="displayModal=false" label="Yes" class="btn btn-success"></p-button>
+      <p-button icon="pi pi-times" (click)="displayModal=false" label="No" class="btn btn-success"></p-button>
+    </div>
 </p-dialog>
 
 
