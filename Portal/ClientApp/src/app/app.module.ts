@@ -25,8 +25,9 @@ import { MenuModule } from 'primeng/menu';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
-import { PanelModule} from 'primeng/panel';
+import { PanelModule } from 'primeng/panel';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 
@@ -46,9 +47,10 @@ import { ConciliationComponent } from './components/conciliation/conciliation.co
 import { AuditComponent } from './components/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
-import { AuthenticationService} from './services/auth/authentication.service';
+import { AuthenticationService } from './services/auth/authentication.service';
 import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { SideMenuComponent } from './components/menu/side-menu/side-menu.compone
     ResetPassComponent,
     TopMenuComponent,
     SideMenuComponent,
+    ChangePassComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
@@ -92,6 +95,7 @@ import { SideMenuComponent } from './components/menu/side-menu/side-menu.compone
     ReactiveFormsModule,
     SidebarModule,
     PanelModule,
+    ConfirmDialogModule,
   ],
   providers: [
     MessageService,

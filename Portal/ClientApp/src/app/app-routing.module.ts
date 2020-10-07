@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'reset',
     component: ResetPassComponent
+  },
+  {
+    path: 'change',
+    component: ChangePassComponent
   },
 
   //{

@@ -6,12 +6,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/auth/authentication.service';
 import { first } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [ConfirmationService]
 })
 export class LoginComponent implements OnInit {
 
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -100,6 +102,14 @@ export class LoginComponent implements OnInit {
 
     }
 
+  }
+
+  change() {
+    this.router.navigate(['/change']);
+  }
+
+  home() {
+    this.router.navigate(['/home']);
   }
 }
 

@@ -31,9 +31,11 @@
     <None Remove="ClientApp\src\app\models\User.ts" />
     <None Remove="ClientApp\src\app\services\auth\authentication.service.ts" />
     <None Remove="ClientApp\src\app\services\menu\menu.service.ts" />
+    <None Remove="ClientApp\src\assets\styles\portal.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\assets\styles\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 

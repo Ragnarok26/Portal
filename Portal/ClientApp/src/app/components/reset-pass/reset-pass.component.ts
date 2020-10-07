@@ -36,15 +36,12 @@ export class ResetPassComponent implements OnInit {
     }
 
     this.user = this.registerForm.value;
-    //this.user = new User(this.registerForm.value);
     this.userService.update(      
       this.user,
       (response: Models.Response<number | null>) => {
         if (response.success) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tu contraseña ha sido enviada por correo.' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tu contraseña ha sido modificada.' });
           this.loading = false;
-          console.log('actualizó')
-        //  this.router.navigate(['/login']);
         }
         else {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message });
