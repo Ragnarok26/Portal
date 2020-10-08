@@ -34,23 +34,26 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 //Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ManagementComponent } from './components/management/management.component';
+import { ConciliationComponent } from './components/conciliation/conciliation.component';
+import { AuditComponent } from './components/audit/audit.component';
+import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { AuthenticationService } from './services/auth/authentication.service';
+import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
+import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
+import { ChangePassComponent } from './components/change-pass/change-pass.component';
 
 //Services
 // import { getBaseUrl } from '../main';
 import { MessageService } from 'primeng/api';
 import { UserService } from './services/user/user.service';
 import { ClientService } from './services/client/client.service';
-import { HomeComponent } from './components/home/home.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { ManagementComponent } from './components/management/management.component';
-import { ConciliationComponent } from './components/conciliation/conciliation.component';
-import { AuditComponent } from './components/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
-import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
-import { AuthenticationService } from './services/auth/authentication.service';
-import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
-import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
-import { ChangePassComponent } from './components/change-pass/change-pass.component';
+
+//Directive
+import { MainDirective } from './directives/main/main.directive';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,8 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     TopMenuComponent,
     SideMenuComponent,
     ChangePassComponent,
+
+    MainDirective,
   ],
   imports: [
     BrowserModule.withServerTransition(

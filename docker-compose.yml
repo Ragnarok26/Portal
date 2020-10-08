@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  portal:
+    image: ${DOCKER_REGISTRY-}portal
+    build:
+      context: .
+      dockerfile: Portal/Dockerfile
+
+  webapi:
+    image: ${DOCKER_REGISTRY-}portalback
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
+

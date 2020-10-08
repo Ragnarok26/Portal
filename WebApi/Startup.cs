@@ -81,7 +81,7 @@ namespace WebApi
                 config.PostProcess = document =>
                 {
                     document.Info.Version = "v1";
-                    document.Info.Description = "Nojomo Core Web API";
+                    document.Info.Description = "Portal Web API";
                     document.Schemes = new[] { OpenApiSchema.Https, OpenApiSchema.Http };
                 };
             })
