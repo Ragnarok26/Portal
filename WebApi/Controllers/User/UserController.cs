@@ -31,7 +31,6 @@ namespace WebApi.Controllers.User
             Response<List<Entity.User.User>> response = new Response<List<Entity.User.User>>();
 
             Logic.Interface.IUser userFilter = new Logic.User.User();
-            string adas = Settings.Instance.DataConfiguration.ConnectionString;
             try
             {
                 response.Success = true;
@@ -41,7 +40,7 @@ namespace WebApi.Controllers.User
             catch (Exception ex)
             {
                 response.Success = false;
-                response.Message = $"{adas} / {ex.Message}";
+                response.Message = ex.Message;
                 response.ResponseData = new List<Entity.User.User>();
                 return StatusCode((int)HttpStatusCode.InternalServerError, response);
             }
@@ -58,7 +57,6 @@ namespace WebApi.Controllers.User
         {
             Response<IEnumerable<Entity.User.User>> response = new Response<IEnumerable<Entity.User.User>>();
             Logic.Interface.IUser userFilter = new Logic.User.User();
-            string adas = Settings.Instance.DataConfiguration.ConnectionString;
             try
             {
                 response.Success = true;
@@ -68,7 +66,7 @@ namespace WebApi.Controllers.User
             catch (Exception ex)
             {
                 response.Success = false;
-                response.Message = $"{adas} / {ex.Message}";
+                response.Message = ex.Message;
                 response.ResponseData = null;
                 return StatusCode((int)HttpStatusCode.InternalServerError, response);
             }
