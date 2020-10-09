@@ -27,3 +27,13 @@
     </div>
   </div>
 </div>
+
+<p-dialog header="Confirmación" [(visible)]="displayModal" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <div class="p-m-0">
+    Hemos enviado a tu correo electrónico la información de tu nueva contraseña.
+  </div>
+  <div class="buttonsModal">
+    <p-button icon="pi pi-check" (click)="changeSuccess()" label="OK" class="btn btn-success"></p-button>
+  </div>
+</p-dialog>

@@ -18,12 +18,6 @@ export class TopMenuComponent implements OnInit {
 
     this.items = [
       {
-        label: 'Profile',
-      },
-      {
-        label: 'Help',
-      },
-      {
         label: 'Log Out',
         icon: 'pi-sign-out'
       }

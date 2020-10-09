@@ -7,6 +7,8 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 @Injectable()
 export class UserService {
+
+  public userSes: User;
   constructor(private webApiService: ClientService) { }
 
   get(successCallback: any, errorCallback: any) {
@@ -21,8 +23,8 @@ export class UserService {
     this.webApiService.get(`User/register`, user, successCallback, errorCallback);
   }
 
-  update(user: User, successCallback: any, errorCallback: any) {
-    this.webApiService.put(`User/` + user.IdUser, user, successCallback, errorCallback);
+  update(user: User[], successCallback: any, errorCallback: any) {
+    this.webApiService.put(`User`, user,  successCallback, errorCallback);
   }
 
   delete(id: number, successCallback: any, errorCallback: any) {

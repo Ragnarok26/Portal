@@ -17,41 +17,19 @@
   }
 }
 
-/*:host ::ng-deep  body .ui-dialog .ui-dialog-titlebar {
-  border: 1px solid #333333;
-  background-color: #333333;
-  color: #ffffff;
-  padding: 1em;
-  font-weight: 700;
-  border-bottom: 0 none;
-}*/
+
 .buttonsModal {
   text-align: right;
   margin-top: 1.5em;
 }
+
 /deep/ body .ui-button {
   background-color: #5cb85c;
   border: 1px solid #5cb85c;
 }
+
   /deep/ body .ui-button:enabled:hover {
     background-color: #26B99A;
     color: #ffffff;
     border-color: #26B99A;
   }
-  /*
-
-:host  ::ng-deep .prime-slider-override
-
-{
-  background-color: #26A3D1;
-  background-image: none;
-  border: none;
-  color: white;
-  .ui-slider-range
-
-{
-  background: red;
-}
-
-}
-}*/

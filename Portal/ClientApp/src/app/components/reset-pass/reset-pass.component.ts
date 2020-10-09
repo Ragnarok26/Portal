@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/models/User';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -15,9 +14,10 @@ export class ResetPassComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   loading: boolean;
-  user= new User();
+  user: User[];
+  displayModal: boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService, private messageService: MessageService ) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private userService: UserService, private messageService: MessageService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -34,13 +34,16 @@ export class ResetPassComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+    let userForm: User;
+    userForm = <User>this.registerForm.value;
 
+    let userChange: User[] = [userForm];
     this.user = this.registerForm.value;
-    this.userService.update(      
-      this.user,
+    this.userService.update(
+      userChange,
       (response: Models.Response<number | null>) => {
         if (response.success) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tu contraseña ha sido modificada.' });
+          this.displayModal = true;
           this.loading = false;
         }
         else {
@@ -54,6 +57,9 @@ export class ResetPassComponent implements OnInit {
       }
     );
 
+  }
+  changeSuccess() {
+    this.router.navigate(['/login']);
   }
 
 }

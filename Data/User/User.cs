@@ -43,7 +43,7 @@ namespace Data.User
             StoredProceduresConfiguration UpdateUserSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["UpdateUser"];
             string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
 
-            using (Connection connection = new Connection($""))
+            using (Connection connection = new Connection(ConnectionString))
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
@@ -52,8 +52,51 @@ namespace Data.User
                         SqlDbType = SqlDbType.Int,
                         Direction = ParameterDirection.Input,
                         ParameterName = "@IdUSer",
-                        //Value = user.idUser
+                        Value = user.FirstOrDefault().IdUser
                     },
+                    new SqlParameter
+                    {
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@email",
+                        Value = user.FirstOrDefault().Email
+                    },
+                    new SqlParameter
+                    {
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@name",
+                        Value = user.FirstOrDefault().Name
+                    },
+                    new SqlParameter
+                    {
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@lastName",
+                        Value = user.FirstOrDefault().LastName
+                    },
+                    new SqlParameter
+                    {
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@password",
+                        Value = user.FirstOrDefault().Password
+                    },
+                    new SqlParameter
+                    {
+                        DbType = DbType.Boolean,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@isActive",
+                        Value = user.FirstOrDefault().IsActive
+                    },                   
+                    new SqlParameter
+                    {
+                        DbType = DbType.Boolean,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@isNew",
+                        Value = user.FirstOrDefault().IsNew
+                    },
+
                     new SqlParameter
                     {
                         DbType = DbType.Int32,
@@ -62,7 +105,7 @@ namespace Data.User
                     }
 
                 };
-                connection.ExecuteStoredProcedure<int>($"", parameters, out outputParameters);
+                connection.ExecuteStoredProcedure<int>($"{UpdateUserSpConfig.StoredProcedureName}", parameters, out outputParameters);
                 if (outputParameters != null)
                 {
                     if (outputParameters.IndexOf("@rowsAffected") > -1)
@@ -85,7 +128,7 @@ namespace Data.User
             IEnumerable<Entity.User.User> users = new List<Entity.User.User>();
             int? rowsAffected = null;
             SqlParameterCollection outputParameters = null;
-            StoredProceduresConfiguration GetUserLoginSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["GetUserByEmail"];
+            StoredProceduresConfiguration GetUserLoginSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["GetUser"];
             string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
             using (Connection connection = new Connection(ConnectionString))
             {
@@ -99,6 +142,13 @@ namespace Data.User
                         Value = user.FirstOrDefault().Email
                     },
 
+                    new SqlParameter
+                    {
+                        DbType = DbType.String,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@password",
+                        Value = user.FirstOrDefault().Password
+                    },
                     new SqlParameter
                     {
                         DbType = DbType.Int32,
