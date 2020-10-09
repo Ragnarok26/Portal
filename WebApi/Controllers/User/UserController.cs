@@ -78,8 +78,41 @@ namespace WebApi.Controllers.User
             }
         }
 
+        //[HttpPut]
+        //public ActionResult<Response<int?>> changePassword([FromBody] IEnumerable<Entity.User.User> user)
+        //{
+        //    Response<int?> response = new Response<int?>();
+        //    Logic.Interface.IUser userFilter = new Logic.User.User();
+        //    try
+        //    {
+        //        response.Success = true;
+        //        response.ResponseData = userFilter.ResetPass(user);
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response.Success = false;
+        //        response.Message = ex.Message;
+        //        response.ResponseData = null;
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, response);
+        //    }
+        //    finally
+        //    {
+        //        response = null;
+        //        userFilter = null;
+        //    }
+        //}
+
+        /// <summary>
+        /// Change all information relative to the User
+        /// any change for a user
+        /// </summary>
+        /// <param name="roles"></param>
+        /// <returns></returns>
+        // PUT: api/Management/Role/5
+        [AllowAnonymous]
         [HttpPut]
-        public ActionResult<Response<int?>> changePassword([FromBody] IEnumerable<Entity.User.User> user)
+        public ActionResult<Response<int?>> Put([FromBody] IEnumerable<Entity.User.User> user)
         {
             Response<int?> response = new Response<int?>();
             Logic.Interface.IUser userFilter = new Logic.User.User();

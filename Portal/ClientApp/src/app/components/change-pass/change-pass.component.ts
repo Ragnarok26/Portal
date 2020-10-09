@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, } from "@angular/router";
 import { UserService } from '../../services/user/user.service';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { User } from '../../models/User';
+
 
 @Component({
   selector: 'app-change-pass',
   templateUrl: './change-pass.component.html',
   styleUrls: ['./change-pass.component.css']
+
 })
 export class ChangePassComponent {
 
   formGroup: FormGroup | null = null;
   loading: boolean;
+  userForChange: User;
+  displayModal: boolean = false;
 
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
-    private messageService: MessageService) {
+    private messageService: MessageService,
+    private router: Router,
+    private confirmationService: ConfirmationService) {
 
 
     this.formGroup = this.fb.group({
@@ -31,23 +38,18 @@ export class ChangePassComponent {
   }
 
   onSubmit(): void {
-    const password = this.formGroup.get('password').value as string;
-
     let userForm: User;
     userForm = <User>this.formGroup.value;
-    userForm.IsActive = false;
-    userForm.IsNew = false;
-    userForm.LastName = null;
-    userForm.Name = null;
-    userForm.IdUser = 1;
+    userForm.idUser = this.userService.userSes.idUser;
+    userForm.isActive = this.userService.userSes.isActive;
+    userForm.isNew = false;
 
-    //let user: User = [userForm];
-
+    let userChange: User[] = [userForm];
     this.userService.update(
-      userForm,
+      userChange,
       (response: Models.Response<number | null>) => {
         if (response.success) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tu contraseña ha sido enviada por correo.' });
+          this.displayModal = true;
           this.loading = false;
         }
         else {
@@ -61,5 +63,8 @@ export class ChangePassComponent {
       }
     );
 
+  }
+  changeSuccess() {
+    this.router.navigate(['/login']);
   }
 }

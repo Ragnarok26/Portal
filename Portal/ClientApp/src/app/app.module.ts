@@ -46,6 +46,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { ConciliationComponent } from './components/conciliation/conciliation.component';
 import { AuditComponent } from './components/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
+import { ConfirmationService } from 'primeng/api';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 import { AuthenticationService } from './services/auth/authentication.service';
 import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
@@ -103,6 +104,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     ClientService,
     MenuService,
     AuthenticationService,
+    ConfirmationService,
     // {
     //   provide: 'BASE_URL',
     //   useFactory: getBaseUrl
