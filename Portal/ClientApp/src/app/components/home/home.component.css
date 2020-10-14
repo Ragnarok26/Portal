@@ -21,7 +21,7 @@
   width: 90vw;
   background-color: #F7F7F7;
 }
-
+/*
 .hamburger {
   display: block;
   position: relative;
@@ -67,3 +67,14 @@
     .hamburger span::after {
       bottom: -20px;
     }
+*/
+
+#mySidenav {
+  position: absolute;
+  left: 0px;
+  transition: 0.3s;
+  width: 100px;
+  text-decoration: none;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}

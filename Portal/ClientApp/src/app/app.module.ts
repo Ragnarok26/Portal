@@ -111,6 +111,10 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     // }
     { provide: 'BASE_URL', useFactory: getBaseUrl },
   ],
+  entryComponents: [
+    ManagementComponent,
+    HomeComponent,
+  ],
   bootstrap: [
     AppComponent
   ]

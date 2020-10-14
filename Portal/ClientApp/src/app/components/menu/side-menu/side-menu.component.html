@@ -2,17 +2,17 @@
   <div class="sideMenu">
     <section class="container">
       <div class="aside" name="infoUser" style="padding-bottom:8em;">
-        <div class="navbar nav_title" style="border: 0;">
-          <a class="site_title"><i class="pi pi-fw pi-cog fa fa-dashboard"></i> <span>Portal CFDI</span></a>
+        <div [ngClass]="(minMenu == true )?'navbar nav_title':' navbar min_nav_title'" style="border: 0;">
+          <a class="site_title"><i class="pi pi-fw pi-cog fa fa-dashboard"></i> <span *ngIf="minMenu">Portal CFDI</span></a>
         </div>
         <div class="clearfix"></div>
-        <div class="profile">
+        <div *ngIf="minMenu" class="profile">
           <div class="profile_pic">
             <img src="../../../assets/images/user.png" alt="..." class="img-circle profile_img">
           </div>
           <div class="profile_info">
             <span>Bienvenido,</span>
-            <h2>Sergio</h2>
+            <h2>{{userName}}</h2>
           </div>
         </div>
 

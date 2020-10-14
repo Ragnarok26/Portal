@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { MainMenuItem } from '../../models/menu/MainMenuItem';
@@ -13,34 +13,13 @@ export class MenuComponent implements OnInit {
 
   @ViewChild(MainDirective, { static: true }) mainDirective: MainDirective;
 
+
   mainMenuItems: MainMenuItem[];
   items: MenuItem[];
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
+
   ngOnInit() {
-    //  this.mainMenuItems = this.menuService.getItems();
-
-
-    //  this.items = [
-
-    //        {
-    //          label: 'Gestion CFDI',
-    //          icon: 'pi pi-fw  pi-circle-on'
-    //        },
-    //        {
-    //          label: 'Conciliación de pagos',
-    //          icon: 'pi pi-fw  pi-circle-on'
-    //        },
-    //        {
-    //          label: 'Auditoría fiscal',
-    //          icon: 'pi pi-fw pi-circle-on'
-    //        }
-
-
-    //  ]
-
-    //}
-
     this.items = [
       {
         label: 'Menu',
@@ -66,6 +45,8 @@ export class MenuComponent implements OnInit {
 
     ];
   }
+
+
   //public load(index: number | null) {
   //  const item = this.mainMenuItems[index];
   //  const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.component);

@@ -1,6 +1,6 @@
-<div style="width: 100%;">
+<!--<div style="width: 100%;">
   <div [@slideInOut]="menuState" class="fa fa-chevron-down sideMenu">
-    <app-side-menu></app-side-menu>
+    <app-side-menu id="mySidenav" class="sidenav"></app-side-menu>
   </div>
   <div class="mainContainer">
     <button (click)="toggleMenu()" class="hamburger nav toggle">
@@ -10,5 +10,20 @@
 
     <div class="grid"></div>
   </div>
+</div>-->
+
+<div style="width: 100%;">
+  <div [@slideInOut]="menuState" id="mySidenav" class="sidenav">
+    <app-side-menu #sideMenu (data)="change_name_age($event)"></app-side-menu>
+  </div>
+  <div class="mainContainer">
+    <button (click)="toggleMenu()" class="hamburger nav toggle">
+      <span></span>
+    </button>
+    <app-top-menu></app-top-menu>
+
+    <div class="grid"></div>
+  </div>
+
 </div>
 
