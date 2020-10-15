@@ -15,7 +15,7 @@ export class SideMenuComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userName = this.userService.userSes.name;
+ //  this.userName = this.userService.userSes.name;
   }
 
   load(show: string) {

@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'change',
     component: ChangePassComponent
+  },
+  {
+    path: 'panel',
+    component: PanelComponent
   },
 
   //{

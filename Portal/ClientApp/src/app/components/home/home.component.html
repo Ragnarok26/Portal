@@ -1,28 +1,15 @@
-<!--<div style="width: 100%;">
-  <div [@slideInOut]="menuState" class="fa fa-chevron-down sideMenu">
-    <app-side-menu id="mySidenav" class="sidenav"></app-side-menu>
-  </div>
-  <div class="mainContainer">
-    <button (click)="toggleMenu()" class="hamburger nav toggle">
-      <span></span>
-    </button>
-    <app-top-menu></app-top-menu>
-
-    <div class="grid"></div>
-  </div>
-</div>-->
-
 <div style="width: 100%;">
   <div [@slideInOut]="menuState" id="mySidenav" class="sidenav">
     <app-side-menu #sideMenu (data)="change_name_age($event)"></app-side-menu>
   </div>
   <div class="mainContainer">
-    <button (click)="toggleMenu()" class="hamburger nav toggle">
-      <span></span>
-    </button>
+    <p-button (click)="toggleMenu()" icon="pi pi-bars" class="p-button-secondary"></p-button>
     <app-top-menu></app-top-menu>
 
-    <div class="grid"></div>
+    <div class="grid">
+      <app-panel #panel [items]="tabs"></app-panel>
+
+    </div>
   </div>
 
 </div>

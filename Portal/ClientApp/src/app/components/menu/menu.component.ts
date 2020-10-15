@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ComponentFactoryResolver} from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenuService } from 'src/app/services/menu/menu.service';
 import { MainMenuItem } from '../../models/menu/MainMenuItem';
@@ -26,25 +26,47 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-pw pi-home',
         items: [
           {
-              label: 'Gestion CFDI',
-              icon: 'pi pi-fw  pi-circle-on'
+            label: 'Gestion CFDI',
+            icon: 'pi pi-fw  pi-circle-on',
+            command: () => {
+              this.getGestion();
+            }
           },
           { separator: true },
-            {
-              label: 'Conciliación de pagos',
-              icon: 'pi pi-fw  pi-circle-on'
-          },
-                    { separator: true },
-            {
-              label: 'Auditoría fiscal',
-              icon: 'pi pi-fw pi-circle-on'
+          {
+            label: 'Conciliación de pagos',
+            icon: 'pi pi-fw  pi-circle-on',
+            command: () => {
+              this.getConciliation();
             }
+          },
+          { separator: true },
+          {
+            label: 'Auditoría fiscal',
+            icon: 'pi pi-fw pi-circle-on',
+            command: () => {
+              this.getAudit();
+            }
+          }
         ]
       }
-      
+
 
     ];
   }
+  getGestion() {
+    console.log("Gestion");
+  }
+
+  getConciliation() {
+    console.log("Conciliación");
+  }
+
+  getAudit() {
+    console.log("Auditoría");
+  }
+
+
 
 
   //public load(index: number | null) {

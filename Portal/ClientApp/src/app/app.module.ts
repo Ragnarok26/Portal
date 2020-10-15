@@ -52,6 +52,7 @@ import { AuthenticationService } from './services/auth/authentication.service';
 import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { PanelComponent } from './components/panel/panel.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ChangePassComponent } from './components/change-pass/change-pass.compon
     TopMenuComponent,
     SideMenuComponent,
     ChangePassComponent,
+    PanelComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
