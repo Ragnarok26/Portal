@@ -26,27 +26,18 @@ export class MenuComponent implements OnInit {
         icon: 'pi pi-pw pi-home',
         items: [
           {
-            label: 'Gestion CFDI',
-            icon: 'pi pi-fw  pi-circle-on',
-            command: () => {
-              this.getGestion();
-            }
+            label: 'Gestión CFDI',
+            icon: 'pi pi-fw  pi-circle-on'
           },
           { separator: true },
           {
             label: 'Conciliación de pagos',
-            icon: 'pi pi-fw  pi-circle-on',
-            command: () => {
-              this.getConciliation();
-            }
+            icon: 'pi pi-fw  pi-circle-on'
           },
           { separator: true },
           {
             label: 'Auditoría fiscal',
-            icon: 'pi pi-fw pi-circle-on',
-            command: () => {
-              this.getAudit();
-            }
+            icon: 'pi pi-fw pi-circle-on'
           }
         ]
       }
@@ -54,17 +45,19 @@ export class MenuComponent implements OnInit {
 
     ];
   }
-  getGestion() {
-    console.log("Gestion");
-  }
 
-  getConciliation() {
-    console.log("Conciliación");
-  }
 
-  getAudit() {
-    console.log("Auditoría");
-  }
+  //getGestion() {
+  //  console.log("Gestion");
+  //}
+
+  //getConciliation() {
+  //  console.log("Conciliación");
+  //}
+
+  //getAudit() {
+  //  console.log("Auditoría");
+  //}
 
 
 

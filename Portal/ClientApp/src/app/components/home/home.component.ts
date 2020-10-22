@@ -30,13 +30,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.tabs = [
-      { code: 'code', name: 'name', category: 'category', quantity:'quantity' },
-      { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-      { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-      { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-      { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
-    ];
 
 
   }
@@ -47,4 +40,51 @@ export class HomeComponent implements OnInit {
     this.sideMenu.load(this.menuState);
   }
 
+
+  onmenuchange(event) {
+    let target = event.target || event.srcElement || event.currentTarget;
+    let option = target.textContent;
+
+    switch (option) {
+      case 'Gestión CFDI': {
+        //statements;
+        this.tabs = [
+          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
+        ];
+
+        break;
+      }
+      case 'Conciliación de pagos': {
+
+        this.tabs = [
+          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' }
+        ];
+        //statements; 
+        break;
+      }
+      default: {
+        //statements; 
+        break;
+      }
+    }
+
+    //console.log("onmenuchange" + event);
+    //if (option == 'Gestión CFDI') {
+    //  this.tabs = [
+    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
+    //  ];
+    //}
+  }
 }

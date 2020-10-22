@@ -17,9 +17,6 @@ export class PanelComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.items);
-    //this.productService.getProductsSmall().then(data => this.products = data);
-
     this.cols = [
       { field: 'code', header: 'Code' },
       { field: 'name', header: 'Name' },
@@ -28,11 +25,5 @@ export class PanelComponent implements OnInit {
     ];
 
 
-    //this.items = [
-    //  { field: 'code', header: 'Code' },
-    //  { field: 'name', header: 'Name' },
-    //  { field: 'category', header: 'Category' },
-    //  { field: 'quantity', header: 'Quantity' }
-    //];
   }
 }

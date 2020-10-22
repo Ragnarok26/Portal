@@ -1,6 +1,6 @@
 <div style="width: 100%;">
   <div [@slideInOut]="menuState" id="mySidenav" class="sidenav">
-    <app-side-menu #sideMenu (data)="change_name_age($event)"></app-side-menu>
+    <app-side-menu #sideMenu (click)="onmenuchange($event)"></app-side-menu>
   </div>
   <div class="mainContainer">
     <p-button (click)="toggleMenu()" icon="pi pi-bars" class="p-button-secondary"></p-button>

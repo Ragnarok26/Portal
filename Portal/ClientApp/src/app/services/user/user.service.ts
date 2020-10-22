@@ -42,9 +42,4 @@ export class UserService {
       return otherValue === value ? null : { 'notEquals': { value, otherValue } };
     };
   }
-
-  //export const CustomValidators = {
-  //  equals: equalsValidator
-  //};
-
 }
