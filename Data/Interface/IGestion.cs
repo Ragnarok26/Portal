@@ -6,7 +6,7 @@ namespace Data.Interface
 {
     public interface IGestion : IDisposable
     {
-        IEnumerable<Entity.Operation.Gestion> GetGestion(IEnumerable<Entity.Operation.Gestion> user);
+        IEnumerable<Entity.Operation.Gestion> GetGestion(IEnumerable<Entity.User.User> user);
 
     }
 }

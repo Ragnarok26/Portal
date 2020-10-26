@@ -17,12 +17,12 @@ namespace Data.Operation
         {
         }
 
-        public IEnumerable<Entity.Operation.Gestion> GetGestion(IEnumerable<Entity.Operation.Gestion> user)
+        public IEnumerable<Entity.Operation.Gestion> GetGestion(IEnumerable<Entity.User.User> user)
         {
             IEnumerable<Entity.Operation.Gestion> users = new List<Entity.Operation.Gestion>();
             int? rowsAffected = null;
             SqlParameterCollection outputParameters = null;
-            StoredProceduresConfiguration GetUserLoginSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["GetUser"];
+            StoredProceduresConfiguration GetUserLoginSpConfig = Settings.Instance.DataConfiguration.StoredProcedures["GetGestion"];
             string ConnectionString = Settings.Instance.DataConfiguration.ConnectionString;
             using (Connection connection = new Connection(ConnectionString))
             {
@@ -33,16 +33,10 @@ namespace Data.Operation
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
                         ParameterName = "@email",
-                        Value = user.FirstOrDefault().Uuid
+                        Value = user.FirstOrDefault().IdUser
                     },
 
-                    new SqlParameter
-                    {
-                        DbType = DbType.String,
-                        Direction = ParameterDirection.Input,
-                        ParameterName = "@password",
-                        Value = user.FirstOrDefault().NombreEmisor
-                    },
+                   
                     new SqlParameter
                     {
                         DbType = DbType.Int32,

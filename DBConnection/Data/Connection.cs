@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
 
 namespace DBConnection.Data
 {
@@ -136,6 +137,50 @@ namespace DBConnection.Data
                 Client.Close();
             }
             return result;
+        }
+
+        public string ExecuteStoredProcedure(string spName, List<SqlParameter> parameters)
+        {
+            var jsonResult = new StringBuilder();
+            using (SqlCommand command = new SqlCommand(spName, Client))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                if (parameters != null)
+                {
+                    foreach (SqlParameter parameter in parameters)
+                    {
+                        command.Parameters.Add(parameter);
+                    }
+                }
+                Client.Open();
+                using (var reader = command.ExecuteReader())
+                {
+                    //if (reader.HasRows)
+                    //{
+                    //    while (reader.Read())
+                    //    {
+                    //        jsonResult.Append(reader.GetValue(0).ToString());
+                    //    }
+                    //}
+                    if (!reader.HasRows)
+                    {
+                        jsonResult.Append("[]");
+                    }
+                    else
+                    {
+                        while (reader.Read())
+                        {
+                            jsonResult.Append(reader.GetValue(0).ToString());
+                        }
+                    }
+
+                }
+            }
+            if (Client.State != ConnectionState.Closed)
+            {
+                Client.Close();
+            }
+            return jsonResult.ToString();
         }
 
         /// <summary>

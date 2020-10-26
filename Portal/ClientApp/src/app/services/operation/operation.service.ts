@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Gestion } from 'src/app/models/Gestion';
 import { ClientService } from '../client/client.service';
+import { User } from '../../models/User';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class OperationService {
   //  this.webApiService.get(`Operation`, successCallback, errorCallback);
   //}
 
-  getGestion(data: Gestion[], successCallback: any, errorCallback: any) {
+  getGestion(data: User[], successCallback: any, errorCallback: any) {
     this.webApiService.post(`Operation/Gestion`, data, successCallback, errorCallback);
   }
 

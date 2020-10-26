@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Entity.Operation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Entity.User
 {
     /// <summary>
-    /// User class
+    /// User class include RFC by company and Rol
     /// </summary>
     public class User
     {
@@ -38,6 +39,8 @@ namespace Entity.User
         /// </summary>
         public bool IsNew { get; set; }
 
-        //public Rol rol { get; set; }
+       
+
+        public List<Rol> Rol { get; set; }
     }
 }

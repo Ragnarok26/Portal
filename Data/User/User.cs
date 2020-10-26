@@ -1,6 +1,7 @@
 ﻿using Data.User.Interface;
 using DBConnection.Data;
 using Entity.Common;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -156,7 +157,9 @@ namespace Data.User
                         ParameterName = "@rowsAffected"
                     }
                 };
-                users = connection.ExecuteStoredProcedure<Entity.User.User>(GetUserLoginSpConfig.StoredProcedureName, parameters, out outputParameters);
+                var userJson = connection.ExecuteStoredProcedure(GetUserLoginSpConfig.StoredProcedureName, parameters);
+                users = JsonConvert.DeserializeObject<List<Entity.User.User>>(userJson);
+                
                 if (outputParameters != null)
                 {
                     if (outputParameters.IndexOf("@rowsAffected") > -1)
@@ -167,5 +170,7 @@ namespace Data.User
             }
             return users;
         }
+
+
     }
 }

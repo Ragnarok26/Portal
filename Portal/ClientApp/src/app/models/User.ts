@@ -1,3 +1,5 @@
+import { Rol } from "./Rol";
+
 export class User {
   public idUser: number;
   public name: string;
@@ -6,4 +8,5 @@ export class User {
   public password: string;
   public isActive: boolean;
   public isNew: boolean;
+  public Rol: Rol;
 }

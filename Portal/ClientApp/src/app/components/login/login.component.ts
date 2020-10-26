@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { Router, ActivatedRoute, } from "@angular/router";
 import { FormControl } from '@angular/forms';
 import { User } from '../../models/User';
@@ -7,6 +7,8 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { first } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 import { MessageService } from 'primeng/api';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+
 
 @Component({
   selector: 'app-login',
@@ -23,13 +25,14 @@ export class LoginComponent implements OnInit {
   userServ: User[];
   displayModal  : boolean = false;
 
-
+  public sessionStorage = sessionStorage;
   constructor(private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private userService: UserService) { }
+    private userService: UserService,
+    @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -67,7 +70,9 @@ export class LoginComponent implements OnInit {
           if (resp.success) {
 
             if (resp.responseData[0] != undefined) {
+              this.sessionStorage.setItem("user", resp.responseData[0]);
               this.userService.userSes = resp.responseData[0];
+              console.log(this.userService.userSes)
 
               if (resp.responseData[0].isNew) {
                 this.displayModal = true;

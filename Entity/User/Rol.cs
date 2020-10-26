@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entity.Operation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,5 +25,6 @@ namespace Entity.User
         /// </summary>
         public bool IsActive { get; set; }
 
+        public List<RFC> Rfc { get; set; }
     }
 }

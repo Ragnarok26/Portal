@@ -13,7 +13,7 @@ namespace Logic.Operation
         {
         }
 
-        public IEnumerable<Entity.Operation.Gestion> GetGestion(IEnumerable<Entity.Operation.Gestion> user)
+        public IEnumerable<Entity.Operation.Gestion> GetGestion(IEnumerable<Entity.User.User> user)
         {
             IEnumerable<Entity.Operation.Gestion> gestionData= new List<Entity.Operation.Gestion>();
             using (Data.Interface.IGestion data = new Data.Operation.Gestion())

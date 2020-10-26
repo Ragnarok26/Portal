@@ -16,7 +16,7 @@ namespace WebApi.Controllers
     {
         [AllowAnonymous]
         [HttpPost("Gestion")]
-        public ActionResult<Response<IEnumerable<Entity.Operation.Gestion>>> Gestion([FromBody] IEnumerable<Entity.Operation.Gestion> data)
+        public ActionResult<Response<IEnumerable<Entity.Operation.Gestion>>> Gestion([FromBody] IEnumerable<Entity.User.User> data)
         {
             Response<IEnumerable<Entity.Operation.Gestion>> response = new Response<IEnumerable<Entity.Operation.Gestion>>();
             Logic.Interface.Operation.IGestion gestionFilter = new Logic.Operation.Gestion();
