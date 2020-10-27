@@ -50,39 +50,39 @@ export class HomeComponent implements OnInit {
     switch (option) {
       case 'Gestión CFDI': {
         //statements;
-        this.operationService.getGestion(
-          this.userService.userSes,
-          (resp: Models.Response<Gestion>) => {
-            if (resp.success) {
+        //this.operationService.getGestion(
+        //  this.userService.userSes,
+        //  (resp: Models.Response<Gestion>) => {
+        //    if (resp.success) {
 
-              if (resp.responseData[0] != undefined) {
-                this.userService.userSes = resp.responseData[0];
-                console.log(this.userService.userSes)
+        //      if (resp.responseData[0] != undefined) {
+        //        this.userService.userSes = resp.responseData[0];
+        //        console.log(this.userService.userSes)
 
-                if (resp.responseData[0].isNew) {
-                  this.displayModal = true;
-                }
+        //        if (resp.responseData[0].isNew) {
+        //          this.displayModal = true;
+        //        }
 
-                else {
-                  this.router.navigate(['/home']);
-                }
-              }
-              else {
-                this.messageService.add({ severity: 'Warning', summary: 'Warning', detail: 'Usuario y/o contraseña incorrecta' });
-                this.loading = false;
-              }
+        //        else {
+        //          this.router.navigate(['/home']);
+        //        }
+        //      }
+        //      else {
+        //        this.messageService.add({ severity: 'Warning', summary: 'Warning', detail: 'Usuario y/o contraseña incorrecta' });
+        //        this.loading = false;
+        //      }
 
-            }
-            else {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
-            }
-            this.loading = false;
-          },
-          (error: any) => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
-            this.loading = false;
-          }
-        );
+        //    }
+        //    else {
+        //      this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
+        //    }
+        //    this.loading = false;
+        //  },
+        //  (error: any) => {
+        //    this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+        //    this.loading = false;
+        //  }
+        //);
         this.tabs = [
           { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
           { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
