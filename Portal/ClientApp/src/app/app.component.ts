@@ -13,5 +13,6 @@ export class AppComponent {
 
   ngOnInit() {
     this.hasToken = true;
+    console.log('app.component');
   }
 }

@@ -53,6 +53,7 @@ import { TopMenuComponent } from './components/menu/top-menu/top-menu.component'
 import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { OperationService } from './services/operation/operation.service';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { PanelComponent } from './components/panel/panel.component';
     MenuService,
     AuthenticationService,
     ConfirmationService,
+    OperationService,
     // {
     //   provide: 'BASE_URL',
     //   useFactory: getBaseUrl

@@ -13,7 +13,7 @@ namespace Entity.Operation
         public string RfcReceptor { get; set; }
         public string NombreReceptor { get; set; }
         public DateTime FechaCertificacionSat { get; set; }
-        public float Monto { get; set; }
+        public decimal Monto { get; set; }
         public string EfectoComprobante { get; set; }
         public string Status { get; set; }
         public DateTime FechaCancelacion { get; set; }

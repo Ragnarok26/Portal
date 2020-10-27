@@ -7,7 +7,6 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { first } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 import { MessageService } from 'primeng/api';
-import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 
 @Component({
@@ -31,8 +30,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
-    private userService: UserService,
-    @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
+    private userService: UserService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({

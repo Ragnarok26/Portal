@@ -5,6 +5,8 @@ import { SideMenuComponent } from '../menu/side-menu/side-menu.component';
 import { PanelComponent } from '../panel/panel.component';
 import { Gestion } from '../../models/Gestion';
 import { OperationService } from '../../services/operation/operation.service';
+import { User } from '../../models/User';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +30,8 @@ export class HomeComponent implements OnInit {
   @ViewChild("panel", { static: true }) panel: PanelComponent;
 
   tabs: any[];
-  constructor(public operationService: OperationService) { }
+  loading: boolean = false;
+  constructor(public operationService: OperationService, public messageService: MessageService) { }
 
   ngOnInit() {
 
@@ -47,49 +50,50 @@ export class HomeComponent implements OnInit {
     let target = event.target || event.srcElement || event.currentTarget;
     let option = target.textContent;
 
+    let userForm = new User();
+    userForm.email = 'loqgarcia@hotmail.com';
+    userForm.idUser = 4;
+
+
+    let userLogin: User[] = [userForm];
+
     switch (option) {
       case 'Gestión CFDI': {
         //statements;
-        //this.operationService.getGestion(
-        //  this.userService.userSes,
-        //  (resp: Models.Response<Gestion>) => {
-        //    if (resp.success) {
+        this.operationService.getGestion(
+          userLogin,
+          (resp: Models.Response<Gestion[]>) => {
+            if (resp.success) {
 
-        //      if (resp.responseData[0] != undefined) {
-        //        this.userService.userSes = resp.responseData[0];
-        //        console.log(this.userService.userSes)
 
-        //        if (resp.responseData[0].isNew) {
-        //          this.displayModal = true;
-        //        }
+              resp.responseData.forEach(
+                (role, index) => {
+                  role.idFile = role.idFile;
+                  role.nombreReceptor = role.nombreReceptor;
+                  role.fileName = role.fileName;
+                }
+              )
+              //this.roles = resp.responseData;
+              this.tabs = resp.responseData;
 
-        //        else {
-        //          this.router.navigate(['/home']);
-        //        }
-        //      }
-        //      else {
-        //        this.messageService.add({ severity: 'Warning', summary: 'Warning', detail: 'Usuario y/o contraseña incorrecta' });
-        //        this.loading = false;
-        //      }
-
-        //    }
-        //    else {
-        //      this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
-        //    }
-        //    this.loading = false;
-        //  },
-        //  (error: any) => {
-        //    this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
-        //    this.loading = false;
-        //  }
-        //);
-        this.tabs = [
-          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-          { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
-        ];
+            }
+            else {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
+            }
+            this.loading = false;
+          },
+          (error: any) => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+            this.loading = false;
+          }
+        );
+        //this.tabs = [
+        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
+        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
+        //];
 
         break;
       }

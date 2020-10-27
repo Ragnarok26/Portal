@@ -28,15 +28,22 @@ namespace Data.Operation
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
-                    new SqlParameter
+                    //new SqlParameter
+                    //{
+                    //    DbType = DbType.String,
+                    //    Direction = ParameterDirection.Input,
+                    //    ParameterName = "@email",
+                    //    Value = user.FirstOrDefault().IdUser
+                    //},
+                     new SqlParameter
                     {
                         DbType = DbType.String,
                         Direction = ParameterDirection.Input,
-                        ParameterName = "@email",
+                        ParameterName = "@idUser",
                         Value = user.FirstOrDefault().IdUser
                     },
 
-                   
+
                     new SqlParameter
                     {
                         DbType = DbType.Int32,

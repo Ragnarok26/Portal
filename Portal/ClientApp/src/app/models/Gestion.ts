@@ -1,15 +1,15 @@
 export class Gestion {
-  public IdFile: number;
+  public idFile: number;
   public Uuid: string;
   public RfcEmisor: string;
   public NombreEmisor: string;
   public RfcReceptor: string;
-  public NombreReceptor: string;
+  public nombreReceptor: string;
   public FechaCertificacionSat: Date;
   public Monto: number;
   public EfectoComprobante: string;
   public Status: string;
   public FechaCancelacion: Date;
-  public FileName: string;
+  public fileName: string;
   public DateCreation: Date;
 }

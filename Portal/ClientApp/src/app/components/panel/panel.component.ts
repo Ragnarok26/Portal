@@ -18,10 +18,9 @@ export class PanelComponent implements OnInit {
   ngOnInit() {
 
     this.cols = [
-      { field: 'code', header: 'Code' },
-      { field: 'name', header: 'Name' },
-      { field: 'category', header: 'Category' },
-      { field: 'quantity', header: 'Quantity' }
+      { field: 'idFile', header: 'idFile' },
+      { field: 'nombreReceptor', header: 'nombreReceptor' },
+      { field: 'fileName', header: 'fileName' }
     ];
 
 
