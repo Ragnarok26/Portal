@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\directives\main\main.directive.ts" />
+    <None Remove="ClientApp\src\app\models\EnumOperation.ts" />
     <None Remove="ClientApp\src\app\models\Gestion.ts" />
     <None Remove="ClientApp\src\app\models\menu\MainMenuItem.ts" />
     <None Remove="ClientApp\src\app\models\Response.ts" />
@@ -45,6 +46,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\directives\main\main.directive.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\EnumOperation.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Gestion.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\menu\MainMenuItem.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\Response.ts" />

@@ -18,9 +18,11 @@
 
 .grid {
   height: 88vh;
-  width: 90vw;
+  width: 85vw;
   background-color: #F7F7F7;
 }
+
+
 /*
 .hamburger {
   display: block;

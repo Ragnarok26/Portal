@@ -7,8 +7,9 @@
     <app-top-menu></app-top-menu>
 
     <div class="grid">
-      <app-panel #panel [items]="tabs"></app-panel>
-
+      <app-audit></app-audit>
+      <app-conciliation></app-conciliation>
+      <app-panel #panel [items]="tabs" [cols]="cols"></app-panel>
     </div>
   </div>
 

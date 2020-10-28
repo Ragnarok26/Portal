@@ -8,20 +8,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PanelComponent implements OnInit {
 
   @Input() items: any[];
+  @Input() cols: any[];
 
   products: any[];
 
-  cols: any[];
 
   constructor() { }
 
   ngOnInit() {
 
-    this.cols = [
-      { field: 'idFile', header: 'idFile' },
-      { field: 'nombreReceptor', header: 'nombreReceptor' },
-      { field: 'fileName', header: 'fileName' }
-    ];
 
 
   }

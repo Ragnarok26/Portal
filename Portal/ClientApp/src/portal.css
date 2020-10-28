@@ -238,7 +238,6 @@ body .container.body .right_col {
 }
 
 .min_nav_title {
-  
   padding-left: 8.5vw;
   background: #2A3F54;
 }
@@ -6326,6 +6325,10 @@ ul.notifications {
 :host ::ng-deep body .ui-button {
   background-color: #26B99A;
   border: 1px solid #26B99A;
+}
+
+:host ::ng-dee body .ui-table table {
+  color: #20B31D;
 }
 
 .buttonLink {

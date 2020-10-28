@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MenuComponent } from '../menu/menu.component';
@@ -7,6 +8,7 @@ import { Gestion } from '../../models/Gestion';
 import { OperationService } from '../../services/operation/operation.service';
 import { User } from '../../models/User';
 import { MessageService } from 'primeng/api';
+import { Operation } from '../../models/enumoperation';
 
 @Component({
   selector: 'app-home',
@@ -30,17 +32,19 @@ export class HomeComponent implements OnInit {
   @ViewChild("panel", { static: true }) panel: PanelComponent;
 
   tabs: any[];
+  cols: any[];
   loading: boolean = false;
   constructor(public operationService: OperationService, public messageService: MessageService) { }
 
   ngOnInit() {
-
+    this.cols = [];
 
 
   }
   menuState: string = 'in';
 
   toggleMenu() {
+    this.cols = [];
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
     this.sideMenu.load(this.menuState);
   }
@@ -52,30 +56,25 @@ export class HomeComponent implements OnInit {
 
     let userForm = new User();
     userForm.email = 'loqgarcia@hotmail.com';
-    userForm.idUser = 4;
-
+    userForm.idUser = 1;
+    //userForm.Rol.idRol = 1;
+    this.cols.length = 0;
 
     let userLogin: User[] = [userForm];
 
     switch (option) {
-      case 'Gestión CFDI': {
-        //statements;
+      case Operation.Gestion: {
         this.operationService.getGestion(
           userLogin,
           (resp: Models.Response<Gestion[]>) => {
             if (resp.success) {
 
-
-              resp.responseData.forEach(
-                (role, index) => {
-                  role.idFile = role.idFile;
-                  role.nombreReceptor = role.nombreReceptor;
-                  role.fileName = role.fileName;
-                }
-              )
-              //this.roles = resp.responseData;
               this.tabs = resp.responseData;
 
+              for (const key in resp.responseData[0]) {
+                this.cols.push({ field: key, header: key });
+
+              }
             }
             else {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
@@ -87,17 +86,16 @@ export class HomeComponent implements OnInit {
             this.loading = false;
           }
         );
-        //this.tabs = [
-        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-        //  { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
-        //];
-
         break;
       }
-      case 'Conciliación de pagos': {
+      case Operation.Conciliation: {
+
+        this.cols = [
+          { field: 'code', header: 'Code' },
+          { field: 'name', header: 'Name' },
+          { field: 'category', header: 'Category' },
+          { field: 'quantity', header: 'Quantity' }
+        ];
 
         this.tabs = [
           { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
@@ -115,15 +113,5 @@ export class HomeComponent implements OnInit {
       }
     }
 
-    //console.log("onmenuchange" + event);
-    //if (option == 'Gestión CFDI') {
-    //  this.tabs = [
-    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' },
-    //    { code: 'code', name: 'name', category: 'category', quantity: 'quantity' }
-    //  ];
-    //}
   }
 }

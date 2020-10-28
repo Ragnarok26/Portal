@@ -54,6 +54,7 @@ import { SideMenuComponent } from './components/menu/side-menu/side-menu.compone
 import { ChangePassComponent } from './components/change-pass/change-pass.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { OperationService } from './services/operation/operation.service';
+import { GestionComponent } from './components/operation/gestion/gestion.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { OperationService } from './services/operation/operation.service';
     SideMenuComponent,
     ChangePassComponent,
     PanelComponent,
+    GestionComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
