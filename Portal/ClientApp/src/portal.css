@@ -237,6 +237,13 @@ body .container.body .right_col {
   height: 57px;
 }
 
+.min_nav_title {
+  padding-left: 8.5vw;
+  background: #2A3F54;
+}
+
+
+
 @media (max-width: 991px) {
   .nav-md .container.body .right_col, .nav-md .container.body .top_nav {
     width: 100%;
@@ -6314,9 +6321,14 @@ ul.notifications {
   background-color: #fff;
   background-image: none;
 }
+
 :host ::ng-deep body .ui-button {
   background-color: #26B99A;
   border: 1px solid #26B99A;
+}
+
+:host ::ng-dee body .ui-table table {
+  color: #20B31D;
 }
 
 .buttonLink {
@@ -6343,6 +6355,7 @@ ul.notifications {
   background-color: #fff;
   border-color: #ccc;
 }
+
   .buttonLink[disabled] {
     /* styles when the element is disabled */
     background-color: #EDEDED;

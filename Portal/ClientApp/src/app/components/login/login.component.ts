@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { Router, ActivatedRoute, } from "@angular/router";
 import { FormControl } from '@angular/forms';
 import { User } from '../../models/User';
@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { first } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   userServ: User[];
   displayModal  : boolean = false;
 
-
+  public sessionStorage = sessionStorage;
   constructor(private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router,
@@ -61,13 +62,16 @@ export class LoginComponent implements OnInit {
       userForm = <User>this.registerForm.value;
 
       let userLogin: User[] = [userForm];
-      this.userService.login(
+      this.authenticationService.login(
         userLogin,
         (resp: Models.Response<User>) => {
           if (resp.success) {
 
+            this.authenticationService.authorize(resp.responseData);
             if (resp.responseData[0] != undefined) {
-              this.userService.userSes = resp.responseData[0];
+              //this.sessionStorage.setItem("user", resp.responseData[0]);
+              //this.userService.userSes = resp.responseData[0];
+              //console.log(this.userService.userSes)
 
               if (resp.responseData[0].isNew) {
                 this.displayModal = true;

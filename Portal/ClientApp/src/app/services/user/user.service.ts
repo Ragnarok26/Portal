@@ -5,18 +5,26 @@ import { environment } from 'src/environments/environment';
 import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 
+
 @Injectable()
 export class UserService {
 
-  public userSes: User;
+  //public userSes: User;
   constructor(private webApiService: ClientService) { }
 
-  get(successCallback: any, errorCallback: any) {
-    this.webApiService.get(`User`, successCallback, errorCallback);
-  }
+  //get(successCallback: any, errorCallback: any) {
+  //  this.webApiService.get(`User`, successCallback, errorCallback);
+  //}
 
   login(user: User[], successCallback: any, errorCallback: any) {
-    this.webApiService.post(`User/Login`, user, successCallback, errorCallback);
+    this.webApiService.get(`User/Login`, user, successCallback, errorCallback);
+
+   
+
+  }
+
+  get(data: any, successCallback: any, errorCallback: any) {
+    this.webApiService.get(`User`, successCallback, errorCallback, data);
   }
 
   register(user: User, successCallback: any, errorCallback: any) {
@@ -43,8 +51,5 @@ export class UserService {
     };
   }
 
-  //export const CustomValidators = {
-  //  equals: equalsValidator
-  //};
-
+ 
 }

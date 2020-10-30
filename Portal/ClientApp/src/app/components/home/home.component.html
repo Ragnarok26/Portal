@@ -1,14 +1,22 @@
 <div style="width: 100%;">
-  <div [@slideInOut]="menuState" class="fa fa-chevron-down sideMenu">
-    <app-side-menu></app-side-menu>
+  <div [@slideInOut]="menuState" id="mySidenav" class="sidenav">
+    <app-side-menu #sideMenu (click)="onmenuchange($event)"></app-side-menu>
   </div>
   <div class="mainContainer">
-    <button (click)="toggleMenu()" class="hamburger nav toggle">
-      <span></span>
-    </button>
+    <p-button (click)="toggleMenu()" icon="pi pi-bars" class="p-button-secondary"></p-button>
     <app-top-menu></app-top-menu>
 
-    <div class="grid"></div>
+    <div class="grid">
+      <div>
+        <!--<ng-template pTemplate="header">-->
+        <app-gestion *ngIf="filterGestion"></app-gestion>
+        <app-audit *ngIf="filterAudit"></app-audit>
+        <app-conciliation *ngIf="filterConciliation"></app-conciliation>
+      </div>
+      <!--</ng-template>-->
+      <app-panel #panel [items]="tabs" [cols]="cols"></app-panel>
+    </div>
   </div>
+
 </div>
 

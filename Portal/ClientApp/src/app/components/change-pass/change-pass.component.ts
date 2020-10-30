@@ -14,6 +14,7 @@ import { User } from '../../models/User';
 })
 export class ChangePassComponent {
 
+  public sessionStorage = sessionStorage;
   formGroup: FormGroup | null = null;
   loading: boolean;
   userForChange: User;
@@ -40,9 +41,15 @@ export class ChangePassComponent {
   onSubmit(): void {
     let userForm: User;
     userForm = <User>this.formGroup.value;
-    userForm.idUser = this.userService.userSes.idUser;
-    userForm.isActive = this.userService.userSes.isActive;
-    userForm.isNew = false;
+
+    let session = new User();
+
+    JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
+      userForm.idUser = item.idUser;
+    });
+    //userForm.idUser = this.userService.userSes.idUser;
+    //userForm.isActive = this.userService.userSes.isActive;
+    //userForm.isNew = false;
 
     let userChange: User[] = [userForm];
     this.userService.update(
