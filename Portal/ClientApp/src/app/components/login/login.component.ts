@@ -62,15 +62,16 @@ export class LoginComponent implements OnInit {
       userForm = <User>this.registerForm.value;
 
       let userLogin: User[] = [userForm];
-      this.userService.login(
+      this.authenticationService.login(
         userLogin,
         (resp: Models.Response<User>) => {
           if (resp.success) {
 
+            this.authenticationService.authorize(resp.responseData);
             if (resp.responseData[0] != undefined) {
-              this.sessionStorage.setItem("user", resp.responseData[0]);
-              this.userService.userSes = resp.responseData[0];
-              console.log(this.userService.userSes)
+              //this.sessionStorage.setItem("user", resp.responseData[0]);
+              //this.userService.userSes = resp.responseData[0];
+              //console.log(this.userService.userSes)
 
               if (resp.responseData[0].isNew) {
                 this.displayModal = true;

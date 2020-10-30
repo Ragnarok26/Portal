@@ -7,8 +7,13 @@
     <app-top-menu></app-top-menu>
 
     <div class="grid">
-      <app-audit></app-audit>
-      <app-conciliation></app-conciliation>
+      <div>
+        <!--<ng-template pTemplate="header">-->
+        <app-gestion *ngIf="filterGestion"></app-gestion>
+        <app-audit *ngIf="filterAudit"></app-audit>
+        <app-conciliation *ngIf="filterConciliation"></app-conciliation>
+      </div>
+      <!--</ng-template>-->
       <app-panel #panel [items]="tabs" [cols]="cols"></app-panel>
     </div>
   </div>

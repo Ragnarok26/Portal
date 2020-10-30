@@ -31,9 +31,15 @@ export class HomeComponent implements OnInit {
   @ViewChild("sideMenu", { static: true }) sideMenu: SideMenuComponent;
   @ViewChild("panel", { static: true }) panel: PanelComponent;
 
+  public sessionStorage = sessionStorage;
   tabs: any[];
   cols: any[];
   loading: boolean = false;
+
+  filterGestion: boolean = false;
+  filterConciliation: boolean = false;
+  filterAudit: boolean = false;
+
   constructor(public operationService: OperationService, public messageService: MessageService) { }
 
   ngOnInit() {
@@ -55,25 +61,31 @@ export class HomeComponent implements OnInit {
     let option = target.textContent;
 
     let userForm = new User();
-    userForm.email = 'loqgarcia@hotmail.com';
-    userForm.idUser = 1;
-    //userForm.Rol.idRol = 1;
+
+
+
+    JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
+      userForm = item;
+    });
+
+    console.log(this.sessionStorage.getItem("email"));
+
     this.cols.length = 0;
 
     let userLogin: User[] = [userForm];
 
     switch (option) {
       case Operation.Gestion: {
+        this.filterGestion = true;
+        this.filterConciliation = false;
+        this.filterAudit = false;
         this.operationService.getGestion(
           userLogin,
           (resp: Models.Response<Gestion[]>) => {
             if (resp.success) {
-
               this.tabs = resp.responseData;
-
               for (const key in resp.responseData[0]) {
-                this.cols.push({ field: key, header: key });
-
+               this.cols.push({ field: key, header: key });
               }
             }
             else {
@@ -89,7 +101,9 @@ export class HomeComponent implements OnInit {
         break;
       }
       case Operation.Conciliation: {
-
+        this.filterGestion = false;
+        this.filterConciliation = true;
+        this.filterAudit = false;
         this.cols = [
           { field: 'code', header: 'Code' },
           { field: 'name', header: 'Name' },
@@ -103,6 +117,27 @@ export class HomeComponent implements OnInit {
           { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
           { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
           { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' }
+        ];
+        //statements; 
+        break;
+      }
+      case Operation.Audit: {
+        this.filterGestion = false;
+        this.filterConciliation = false;
+        this.filterAudit = true;
+        this.cols = [
+          { field: 'code', header: 'Code' },
+          { field: 'name', header: 'Name' },
+          { field: 'category', header: 'Category' },
+          { field: 'quantity', header: 'Quantity' }
+        ];
+
+        this.tabs = [
+          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' }
         ];
         //statements; 
         break;

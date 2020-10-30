@@ -32,16 +32,35 @@ namespace Logic.User
             }
             return rowsAffected;
         }
-        public IEnumerable<Entity.User.User> Login(IEnumerable<Entity.User.User> user)
+        public IEnumerable<Entity.User.User> Login(string email, string password)
         {
             IEnumerable<Entity.User.User> userLog = new List<Entity.User.User>();
+            List<Entity.User.User> users = new List<Entity.User.User>();
+         
+
+            Entity.User.User logUser = new Entity.User.User()
+            {
+                Email = email,
+                Password = password
+            };
+            users.Add(logUser);
+            using (IUser data = new Data.User.User())
+            {
+                userLog = data.Login(users);
+            }
+            return userLog;
+        }
+        public IEnumerable<Entity.User.User> Auth(IEnumerable<Entity.User.User> user)
+        {
+            IEnumerable<Entity.User.User> userLog = new List<Entity.User.User>();
+            
             using (IUser data = new Data.User.User())
             {
                 userLog = data.Login(user);
             }
             return userLog;
         }
-        
+
 
     }
 }

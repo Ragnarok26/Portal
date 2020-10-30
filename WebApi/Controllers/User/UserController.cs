@@ -26,42 +26,15 @@ namespace WebApi.Controllers.User
         // GET: api/Management/User
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<Response<List<Entity.User.User>>> Get()
+        public ActionResult<Response<List<Entity.User.User>>> Get([FromHeader] string email, [FromHeader] string password)//([FromHeader] IEnumerable<Entity.User.User> user)
         {
-            Response<List<Entity.User.User>> response = new Response<List<Entity.User.User>>();
-
-            Logic.Interface.IUser userFilter = new Logic.User.User();
-            try
-            {
-                string adas= Settings.Instance.DataConfiguration.ConnectionString;
-                response.Success = true;
-                response.ResponseData = (List<Entity.User.User>)userFilter.GetAllUser();
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                response.Success = false;
-                response.Message = ex.Message;
-                response.ResponseData = new List<Entity.User.User>();
-                return StatusCode((int)HttpStatusCode.InternalServerError, response);
-            }
-            finally
-            {
-                response = null;
-                userFilter = null;
-            }
-        }
-
-        [AllowAnonymous]
-        [HttpPost("Login")]
-        public ActionResult<Response<IEnumerable<Entity.User.User>>> Login([FromBody] IEnumerable<Entity.User.User> user)
-        {
+          
             Response<IEnumerable<Entity.User.User>> response = new Response<IEnumerable<Entity.User.User>>();
             Logic.Interface.IUser userFilter = new Logic.User.User();
             try
             {
                 response.Success = true;
-                response.ResponseData = userFilter.Login(user);
+                response.ResponseData = userFilter.Login(email, password);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -77,6 +50,32 @@ namespace WebApi.Controllers.User
                 userFilter = null;
             }
         }
+
+        //[AllowAnonymous]
+        //[HttpGet("Login")]
+        //public ActionResult<Response<IEnumerable<Entity.User.User>>> Login([FromBody] IEnumerable<Entity.User.User> user)
+        //{
+        //    Response<IEnumerable<Entity.User.User>> response = new Response<IEnumerable<Entity.User.User>>();
+        //    Logic.Interface.IUser userFilter = new Logic.User.User();
+        //    try
+        //    {
+        //        response.Success = true;
+        //        response.ResponseData = userFilter.Login(user);
+        //        return Ok(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response.Success = false;
+        //        response.Message = ex.Message;
+        //        response.ResponseData = null;
+        //        return StatusCode((int)HttpStatusCode.InternalServerError, response);
+        //    }
+        //    finally
+        //    {
+        //        response = null;
+        //        userFilter = null;
+        //    }
+        //}
 
         //[HttpPut]
         //public ActionResult<Response<int?>> changePassword([FromBody] IEnumerable<Entity.User.User> user)
