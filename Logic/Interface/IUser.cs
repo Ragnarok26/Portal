@@ -13,8 +13,9 @@ namespace Logic.Interface
         IEnumerable<Entity.User.User> GetAllUser();
 
         IEnumerable<Entity.User.User> Login(string email, string password);
+        public int? Register(Entity.User.User user);
 
-        public int? ResetPass(IEnumerable<Entity.User.User> user);
+        public int? ResetPass(Entity.User.User user);
 
         public IEnumerable<Entity.User.User> Auth(IEnumerable<Entity.User.User> user);
     }

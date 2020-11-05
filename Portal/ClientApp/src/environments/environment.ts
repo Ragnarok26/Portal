@@ -6,11 +6,49 @@ export const environment = {
   production: false,
   urlData: null,
   token: "",
-  //serviceEndpoint: "https://localhost:44364/api/",
-  serviceEndpoint: "http://74.208.178.79:4001/api/",
+  serviceEndpoint: "https://localhost:44364/api/",
+  // serviceEndpoint: "http://74.208.178.79:4001/api/",
   localServices: {
     auth: "Auth",
-  }
+  },
+
+
+
+  labelsTableGestion:
+    [{
+      "uuid": "UUID CDFI",
+      "rfcEmisor": "RFC Emisor",
+      "rfcReceptor": "RFC Receptor",
+      "nombreEmisor": "Nombre Emisor",
+      "nombreReceptor": "Nombre Receptor",
+      "fechaCertificacionSat": "Fecha Certificacion SAT",
+      "monto": "Monto",
+      "fechaCancelacion": "Fecha de Cancelación",
+      "efectoComprobante": "Efecto Comprobante",
+      "status": "Estatus"
+    }],
+
+  labelsFilters: [
+    {
+      "MainOption": "Selecciona una opción",
+      "RFCEmisor": "RFC Emisor",
+      "RFCReceptor": "RFC Receptor",
+      "SerieCDFI": "Serie CDFI",
+      "FolioCDFI": "Folio CDFI",
+      "UUIDCDFI": "UUID CDFI",
+      "PeriodoPago": "Periodo Pago",
+      "CPRrelacionados": "CPR relacionados",
+      "TipoPago": "Tipo de pago",
+      "FormaPago": "Forma de pago",
+      "EfectoCDFI": "Efecto CDFI",
+      "RespuestaCDFI": "Respuesta CDFI",
+      "Status": "Estatus",
+      "VersionCDFI": "Versión CDFI",
+
+
+    }
+  ],
+
 };
 
 /*

@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
-import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { ResetPassComponent } from './components/user/reset-pass/reset-pass.component';
+import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { CreateComponent } from './components/user/create/create.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'panel',
     component: PanelComponent
+  },
+  {
+    path: 'create_user',
+    component: CreateComponent
   },
 
   //{

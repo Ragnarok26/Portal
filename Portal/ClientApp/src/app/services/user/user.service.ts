@@ -31,7 +31,12 @@ export class UserService {
     this.webApiService.get(`User/register`, user, successCallback, errorCallback);
   }
 
-  update(user: User[], successCallback: any, errorCallback: any) {
+
+  post(user: User, successCallback: any, errorCallback: any) {
+    this.webApiService.post(`User`, user, successCallback, errorCallback);
+  }
+
+  put(user: User, successCallback: any, errorCallback: any) {
     this.webApiService.put(`User`, user,  successCallback, errorCallback);
   }
 

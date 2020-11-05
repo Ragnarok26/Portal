@@ -23,7 +23,7 @@ namespace Logic.User
             }
             return users;
         }
-        public int? ResetPass(IEnumerable<Entity.User.User> user)
+        public int? ResetPass(Entity.User.User user)
         {
             int? rowsAffected = null;
             using (IUser data = new Data.User.User())
@@ -41,7 +41,7 @@ namespace Logic.User
             Entity.User.User logUser = new Entity.User.User()
             {
                 Email = email,
-                Password = password
+                Password = Entity.Common.Hash.EncrypPassword(password)
             };
             users.Add(logUser);
             using (IUser data = new Data.User.User())
@@ -59,6 +59,16 @@ namespace Logic.User
                 userLog = data.Login(user);
             }
             return userLog;
+        }
+
+        public int? Register(Entity.User.User user)
+        {
+            int? rowsAffected = null;
+            using (IUser data = new Data.User.User())
+            {
+                rowsAffected = data.Register(user);
+            }
+            return rowsAffected;
         }
 
 

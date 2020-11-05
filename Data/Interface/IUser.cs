@@ -7,9 +7,12 @@ namespace Data.User.Interface
     {
         IEnumerable<Entity.User.User> GetAllUser();
         IEnumerable<Entity.User.User> AddUser();
-        int? ResetPass(IEnumerable<Entity.User.User> user);
+        int? ResetPass(Entity.User.User user);
 
         IEnumerable<Entity.User.User> Login(IEnumerable<Entity.User.User> user);
         IEnumerable<Entity.User.Rol> GetAllRoles();
+
+        public int? Register(Entity.User.User user);
+
     }
 }

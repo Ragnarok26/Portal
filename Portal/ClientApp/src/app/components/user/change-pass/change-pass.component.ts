@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, } from "@angular/router";
-import { UserService } from '../../services/user/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
-import { User } from '../../models/User';
+import { User } from 'src/app/models/User';
 
 
 @Component({
@@ -46,13 +46,13 @@ export class ChangePassComponent {
 
     JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
       userForm.idUser = item.idUser;
+      userForm.email = item.email;
+      userForm.isNew = false;
     });
-    //userForm.idUser = this.userService.userSes.idUser;
-    //userForm.isActive = this.userService.userSes.isActive;
-    //userForm.isNew = false;
 
-    let userChange: User[] = [userForm];
-    this.userService.update(
+
+    let userChange: User = userForm;
+    this.userService.put(
       userChange,
       (response: Models.Response<number | null>) => {
         if (response.success) {

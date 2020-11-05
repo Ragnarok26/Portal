@@ -28,6 +28,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { PanelModule } from 'primeng/panel';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -47,14 +48,15 @@ import { ConciliationComponent } from './components/operation/conciliation/conci
 import { AuditComponent } from './components/operation/audit/audit.component';
 import { MenuService } from './services/menu/menu.service';
 import { ConfirmationService } from 'primeng/api';
-import { ResetPassComponent } from './components/reset-pass/reset-pass.component';
+import { ResetPassComponent } from './components/user/reset-pass/reset-pass.component';
 import { AuthenticationService } from './services/auth/authentication.service';
 import { TopMenuComponent } from './components/menu/top-menu/top-menu.component';
 import { SideMenuComponent } from './components/menu/side-menu/side-menu.component';
-import { ChangePassComponent } from './components/change-pass/change-pass.component';
+import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { OperationService } from './services/operation/operation.service';
 import { GestionComponent } from './components/operation/gestion/gestion.component';
+import { CreateComponent } from './components/user/create/create.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { GestionComponent } from './components/operation/gestion/gestion.compone
     ChangePassComponent,
     PanelComponent,
     GestionComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule.withServerTransition(
@@ -102,6 +105,8 @@ import { GestionComponent } from './components/operation/gestion/gestion.compone
     SidebarModule,
     PanelModule,
     ConfirmDialogModule,
+    DropdownModule,
+    CalendarModule
   ],
   providers: [
     MessageService,

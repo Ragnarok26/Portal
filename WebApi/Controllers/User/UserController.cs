@@ -20,7 +20,7 @@ namespace WebApi.Controllers.User
     public class UserController : BaseController
     {
         /// <summary>
-        /// 
+        /// Get information about user for Login
         /// </summary>
         /// <returns></returns>
         // GET: api/Management/User
@@ -28,7 +28,7 @@ namespace WebApi.Controllers.User
         [HttpGet]
         public ActionResult<Response<List<Entity.User.User>>> Get([FromHeader] string email, [FromHeader] string password)//([FromHeader] IEnumerable<Entity.User.User> user)
         {
-          
+
             Response<IEnumerable<Entity.User.User>> response = new Response<IEnumerable<Entity.User.User>>();
             Logic.Interface.IUser userFilter = new Logic.User.User();
             try
@@ -111,7 +111,7 @@ namespace WebApi.Controllers.User
         // PUT: api/Management/Role/5
         [AllowAnonymous]
         [HttpPut]
-        public ActionResult<Response<int?>> Put([FromBody] IEnumerable<Entity.User.User> user)
+        public ActionResult<Response<int?>> Put([FromBody] Entity.User.User user)
         {
             Response<int?> response = new Response<int?>();
             Logic.Interface.IUser userFilter = new Logic.User.User();
@@ -134,5 +134,36 @@ namespace WebApi.Controllers.User
                 userFilter = null;
             }
         }
+        /// <summary>
+        /// Register a new user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>Number of registers affected</returns>
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult<Response<int?>> Post([FromBody] Entity.User.User user)
+        {
+            Response<int?> response = new Response<int?>();
+            Logic.Interface.IUser userFilter = new Logic.User.User();
+            try
+            {
+                response.Success = true;
+                response.ResponseData = userFilter.Register(user);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Message = ex.Message;
+                response.ResponseData = null;
+                return StatusCode((int)HttpStatusCode.InternalServerError, response);
+            }
+            finally
+            {
+                response = null;
+                userFilter = null;
+            }
+        }
     }
+
 }

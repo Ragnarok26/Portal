@@ -9,6 +9,7 @@ import { OperationService } from '../../services/operation/operation.service';
 import { User } from '../../models/User';
 import { MessageService } from 'primeng/api';
 import { Operation } from '../../models/enumoperation';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -71,7 +72,7 @@ export class HomeComponent implements OnInit {
     console.log(this.sessionStorage.getItem("email"));
 
     this.cols.length = 0;
-
+    let title: string;
     let userLogin: User[] = [userForm];
 
     switch (option) {
@@ -85,7 +86,13 @@ export class HomeComponent implements OnInit {
             if (resp.success) {
               this.tabs = resp.responseData;
               for (const key in resp.responseData[0]) {
-               this.cols.push({ field: key, header: key });
+                for (const header in environment.labelsTableGestion[0]) {
+                  if (header == key) {
+                    title = environment.labelsTableGestion[0][header];
+                    console.log(environment.labelsTableGestion[0][header]);
+                  }
+                }
+                this.cols.push({ field: key, header: title });
               }
             }
             else {

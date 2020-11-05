@@ -37,9 +37,9 @@ export class ResetPassComponent implements OnInit {
     let userForm: User;
     userForm = <User>this.registerForm.value;
 
-    let userChange: User[] = [userForm];
+    let userChange: User= userForm;
     this.user = this.registerForm.value;
-    this.userService.update(
+    this.userService.put(
       userChange,
       (response: Models.Response<number | null>) => {
         if (response.success) {
