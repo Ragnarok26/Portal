@@ -1,0 +1,18 @@
+.largeInput {
+  width: 100%;
+}
+
+.buttonsModal {
+  text-align: center;
+}
+
+/deep/ body .ui-button {
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
+}
+
+  /deep/ body .ui-button:enabled:hover {
+    background-color: #26B99A;
+    color: #ffffff;
+    border-color: #26B99A;
+  }

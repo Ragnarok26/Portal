@@ -9,6 +9,8 @@ using WebApi.Controllers.Common;
 using Entity.User;
 using Microsoft.AspNetCore.Authorization;
 using Entity.Common;
+using System.Web;
+
 
 namespace WebApi.Controllers.User
 {
@@ -109,16 +111,22 @@ namespace WebApi.Controllers.User
         /// <param name="roles"></param>
         /// <returns></returns>
         // PUT: api/Management/Role/5
+        //[AllowAnonymous]
+        //[HttpPut]
+        //public ActionResult<Response<int?>> Put([FromBody] Entity.User.User user)
         [AllowAnonymous]
         [HttpPut]
-        public ActionResult<Response<int?>> Put([FromBody] Entity.User.User user)
+        //public ActionResult<Response<int?>> Put([FromBody] Entity.User.User user)
+        [Route("{option}")]
+        public ActionResult<Response<int?>> Put(int option, [System.Web.Http.FromBody] Entity.User.User user)
         {
             Response<int?> response = new Response<int?>();
             Logic.Interface.IUser userFilter = new Logic.User.User();
             try
             {
                 response.Success = true;
-                response.ResponseData = userFilter.ResetPass(user);
+                response.ResponseData = userFilter.UpdateUser(user, (EnumUpdateUser)option);
+
                 return Ok(response);
             }
             catch (Exception ex)
@@ -164,6 +172,8 @@ namespace WebApi.Controllers.User
                 userFilter = null;
             }
         }
+
+
     }
 
 }

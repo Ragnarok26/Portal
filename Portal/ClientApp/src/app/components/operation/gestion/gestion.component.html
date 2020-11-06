@@ -1,74 +1,74 @@
-<div class="p-field p-col-12">
-  <div class="p-field p-col-6">
-    <p-dropdown placeholder="---">
-      <!--<ng-template let-option pTemplate="item">-->
-      <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
-      <!--</ng-template>-->
-    </p-dropdown>
-  </div>
+
+<div class="ui-g-12 ui-md-6 ui-lg-12">
+  <p-dropdown  [options]="cities" [(ngModel)]="selectedCity1"  placeholder="---" [style]="{'width':'50%'}" [showClear]="true">
+    <!--<ng-template let-option pTemplate="item">-->
+    <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
+    <!--</ng-template>-->
+    <!--<p-dropdown [options]="cities" [(ngModel)]="selectedCity1" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>-->
+  </p-dropdown>
 </div>
+
 <!--<p-dropdown placeholder="---">-->
 <!--<ng-template let-option pTemplate="item">-->
 <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
 <!--</ng-template>-->
 <!--</p-dropdown>-->
 
-<div class="p-field p-col-12">
-
-  <div class="p-field p-col-2">
-    <input pInputText type="text" placeholder="RFC Emisor" class="p-column-filter">
-  </div>
-  <div class="p-field p-col-2">
-    <input pInputText type="text" placeholder="RFC Receptor" class="p-column-filter">
-  </div>
-  <div class="p-field p-col-2">
-
-    <div class="p-field p-col-4">
-      <p-calendar placeholder="Fecha desde-hasta envió CFDI" [(ngModel)]="date2" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"></p-calendar>
-    </div>
-  </div>
-  <div class="p-field p-col-2">
-    <input pInputText type="text" placeholder="UUID CFDI" class="p-column-filter">
-  </div>
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <input pInputText type="text" placeholder="RFC Emisor" class="largeInput">
 </div>
-<div class="p-field p-col-12">
-  <p-dropdown placeholder="Tipo de pago">
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <input pInputText type="text" placeholder="RFC Receptor" class="largeInput">
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+
+  <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" placeholder="Fecha desde-hasta envió CFDI" [(ngModel)]="date2" [locale]="es" dateFormat="dd/mm/yy" inputId="spanish"></p-calendar>
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <input pInputText type="text" placeholder="UUID CFDI" class="largeInput">
+</div>
+
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <p-dropdown placeholder="Tipo de pago" [style]="{'width':'100%'}">
     <!--<ng-template let-option pTemplate="item">-->
     <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
     <!--</ng-template>-->
   </p-dropdown>
 </div>
-<div class="p-field p-col-2">
-  <p-dropdown placeholder="Forma de pago">
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <p-dropdown placeholder="Forma de pago" [style]="{'width':'100%'}">
     <!--<ng-template let-option pTemplate="item">-->
     <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
     <!--</ng-template>-->
   </p-dropdown>
 </div>
-<div class="p-field p-col-2">
-  <p-dropdown placeholder="Vigencia">
-    <!--<ng-template let-option pTemplate="item">-->
-    <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
-    <!--</ng-template>-->
-  </p-dropdown>
-
-  <div class="p-field p-col-2">
-    <input pInputText type="text" placeholder="CPR relacionado" class="p-column-filter">
-  </div>
-
-</div>
-<div class="p-field p-col-2">
-  <p-dropdown placeholder="Respuesta de ">
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <p-dropdown placeholder="Vigencia" [style]="{'width':'100%'}">
     <!--<ng-template let-option pTemplate="item">-->
     <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
     <!--</ng-template>-->
   </p-dropdown>
 </div>
-<div class="p-field p-col-2">
-
-  <input pInputText type="text" placeholder="Versión de CFDI" class="p-column-filter">
-</div>
-<div class="p-field p-col-2">
-  <input pInputText type="text" placeholder="Periodo de pago" class="p-column-filter">
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <input pInputText type="text" placeholder="CPR relacionado" class="largeInput">
 </div>
 
+
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <p-dropdown placeholder="Respuesta de " [style]="{'width':'100%'}">
+    <!--<ng-template let-option pTemplate="item">-->
+    <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
+    <!--</ng-template>-->
+  </p-dropdown>
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+
+  <input pInputText type="text" placeholder="Versión de CFDI" class="largeInput">
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-2">
+  <input pInputText type="text" placeholder="Periodo de pago" class="largeInput">
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-2 buttonsModal">
+  <p-button (click)="FilterData()" label="Enviar" class="btn btn-success"></p-button>
+
+</div>

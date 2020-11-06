@@ -23,6 +23,9 @@ export class GestionComponent implements OnInit {
   date2: Date;
   es: any;
 
+  cities: any[];
+  selectedCity1: any;
+
   @ViewChild('dt') table: Table;
   constructor() { }
 
@@ -38,6 +41,15 @@ export class GestionComponent implements OnInit {
       today: 'Hoy',
       clear: 'Borrar'
     }
+
+
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' }
+    ];
 
   }
 
@@ -74,4 +86,7 @@ export class GestionComponent implements OnInit {
   onRepresentativeChange(event) {
     this.table.filter(event.value, 'representative', 'in')
   }
+
+  FilterData() { }
+
 }

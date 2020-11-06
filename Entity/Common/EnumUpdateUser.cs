@@ -9,9 +9,10 @@ namespace Entity.Common
     /// </summary>
     public enum  EnumUpdateUser
     {
-        UpdatePass = 1,
-        UpdateUserInformation=2,
-        UpdateIsNew = 3,
+        ResetPass = 1,
+        ChangePass = 2,
+        UserInformation =3,
+        UpdateIsNew = 4,
 
     }
 }

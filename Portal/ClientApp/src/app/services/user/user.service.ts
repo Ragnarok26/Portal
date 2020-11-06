@@ -36,8 +36,8 @@ export class UserService {
     this.webApiService.post(`User`, user, successCallback, errorCallback);
   }
 
-  put(user: User, successCallback: any, errorCallback: any) {
-    this.webApiService.put(`User`, user,  successCallback, errorCallback);
+  put(user: User, option:number, successCallback: any, errorCallback: any) {
+    this.webApiService.put(`User/`+ option, user,  successCallback, errorCallback);
   }
 
   delete(id: number, successCallback: any, errorCallback: any) {

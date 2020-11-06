@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, } from "@angular/router";
 import { UserService } from 'src/app/services/user/user.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { User } from 'src/app/models/User';
+import { UpdateUser } from '../../../models/EnumUpdate';
 
 
 @Component({
@@ -45,15 +46,13 @@ export class ChangePassComponent {
     let session = new User();
 
     JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
-      userForm.idUser = item.idUser;
-      userForm.email = item.email;
-      userForm.isNew = false;
+      session = item;
+      session.password = userForm.password
     });
 
-
-    let userChange: User = userForm;
+    let userChange: User = session;
     this.userService.put(
-      userChange,
+      userChange, UpdateUser.ChangePass,
       (response: Models.Response<number | null>) => {
         if (response.success) {
           this.displayModal = true;

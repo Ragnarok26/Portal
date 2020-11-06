@@ -133,6 +133,7 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+        //    app.UseSession();
             app.UseCors();
             app.UseHttpsRedirection();
 

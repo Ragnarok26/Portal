@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/models/User';
 import { MessageService } from 'primeng/api';
+import { UpdateUser } from '../../../models/EnumUpdate';
 
 @Component({
   selector: 'app-reset-pass',
@@ -40,7 +41,7 @@ export class ResetPassComponent implements OnInit {
     let userChange: User= userForm;
     this.user = this.registerForm.value;
     this.userService.put(
-      userChange,
+      userChange, UpdateUser.ResetPass,
       (response: Models.Response<number | null>) => {
         if (response.success) {
           this.displayModal = true;

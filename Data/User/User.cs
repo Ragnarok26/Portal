@@ -37,7 +37,7 @@ namespace Data.User
             IEnumerable<Entity.User.User> users = new List<Entity.User.User>();
             return users;
         }
-        public int? ResetPass(Entity.User.User user)
+        public int? UpdateUser(Entity.User.User user, EnumUpdateUser option)
         {
             int? rowsAffected = null;
 
@@ -52,13 +52,13 @@ namespace Data.User
             {
                 List<SqlParameter> parameters = new List<SqlParameter>
                 {
-                //    new SqlParameter
-                //    {
-                //        SqlDbType = SqlDbType.Int,
-                //        Direction = ParameterDirection.Input,
-                //        ParameterName = "@IdUSer",
-                //        Value = user.FirstOrDefault().IdUser
-                //    },
+                    new SqlParameter
+                    {
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Input,
+                        ParameterName = "@option",
+                        Value = option
+                    },
                     new SqlParameter
                     {
                         DbType = DbType.String,

@@ -1,4 +1,5 @@
 ﻿using Data.User.Interface;
+using Entity.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,12 +24,12 @@ namespace Logic.User
             }
             return users;
         }
-        public int? ResetPass(Entity.User.User user)
+        public int? UpdateUser(Entity.User.User user ,EnumUpdateUser option)
         {
             int? rowsAffected = null;
             using (IUser data = new Data.User.User())
             {
-                rowsAffected = data.ResetPass(user);
+                rowsAffected = data.UpdateUser(user, option);
             }
             return rowsAffected;
         }

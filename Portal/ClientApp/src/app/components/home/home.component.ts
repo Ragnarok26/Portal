@@ -36,12 +36,15 @@ export class HomeComponent implements OnInit {
   tabs: any[];
   cols: any[];
   loading: boolean = false;
+  currentUser: User;
+
 
   filterGestion: boolean = false;
   filterConciliation: boolean = false;
   filterAudit: boolean = false;
 
-  constructor(public operationService: OperationService, public messageService: MessageService) { }
+  constructor(public operationService: OperationService, public messageService: MessageService) {
+  }
 
   ngOnInit() {
     this.cols = [];
@@ -63,9 +66,7 @@ export class HomeComponent implements OnInit {
 
     let userForm = new User();
 
-
-
-    JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
+    this.currentUser = JSON.parse(this.sessionStorage.getItem('currentUser')).forEach((item: User) => {
       userForm = item;
     });
 

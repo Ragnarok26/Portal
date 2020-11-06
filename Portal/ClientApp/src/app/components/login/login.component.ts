@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute, } from "@angular/router";
 import { FormControl } from '@angular/forms';
 import { User } from '../../models/User';
@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../services/auth/authentication.servic
 import { first } from 'rxjs/operators';
 import { UserService } from '../../services/user/user.service';
 import { MessageService } from 'primeng/api';
+import { UpdateUser } from '../../models/EnumUpdate';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   returnUrl: string;
   userServ: User[];
-  displayModal  : boolean = false;
+  displayModal: boolean = false;
 
   public sessionStorage = sessionStorage;
   constructor(private messageService: MessageService,
@@ -68,12 +69,13 @@ export class LoginComponent implements OnInit {
           if (resp.success) {
 
             this.authenticationService.authorize(resp.responseData);
-            if (resp.responseData[0] != undefined) {
-              //this.sessionStorage.setItem("user", resp.responseData[0]);
-              //this.userService.userSes = resp.responseData[0];
-              //console.log(this.userService.userSes)
 
-              if (resp.responseData[0].isNew) {
+            if (this.sessionStorage) {
+              let userSession: User;
+              JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
+                userSession = item;
+              });
+              if (userSession.isNew) {
                 this.displayModal = true;
               }
 
@@ -107,7 +109,31 @@ export class LoginComponent implements OnInit {
   }
 
   home() {
-    this.router.navigate(['/home']);
+    let userForm: User;
+
+    JSON.parse(this.sessionStorage.getItem('currentUser')).forEach(item => {
+      userForm = item;
+    });
+
+    let userChange: User = userForm;
+    this.userService.put(
+      userChange, UpdateUser.UpdateIsNew,
+      (response: Models.Response<number | null>) => {
+        if (response.success) {
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message });
+          this.loading = false;
+        }
+      },
+      (error: any) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+        this.loading = false;
+      }
+    );
+
+
   }
 }
 
