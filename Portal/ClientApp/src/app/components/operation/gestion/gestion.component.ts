@@ -44,11 +44,9 @@ export class GestionComponent implements OnInit {
 
 
     this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
+      { name: 'Emitidos', option: '1' },
+      { name: 'Recibidos', option: '2' },
+      { name: 'Nómina', option: '3' }
     ];
 
   }

@@ -14,8 +14,9 @@
         <app-conciliation *ngIf="filterConciliation"></app-conciliation>
       </div>
       <div class="ui-g">
-        <!--</ng-template>-->
-        <app-panel #panel [items]="tabs" [cols]="cols"></app-panel>
+        <div class="ui-g-12 ui-md-12 ui-lg-12" >
+          <app-panel #panel [items]="tabs" [cols]="cols"></app-panel>
+        </div>
       </div>
     </div>
   </div>

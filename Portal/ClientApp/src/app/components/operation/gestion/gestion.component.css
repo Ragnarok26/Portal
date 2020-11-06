@@ -16,3 +16,12 @@
     color: #ffffff;
     border-color: #26B99A;
   }
+
+
+/deep/ body .ui-table .ui-table-thead > tr > th {
+  color: #20B31D
+}
+
+/deep/ body .ui-table .ui-table-tbody > tr {
+  color: #20B31D
+}
