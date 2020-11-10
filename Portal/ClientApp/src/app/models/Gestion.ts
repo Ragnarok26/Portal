@@ -1,3 +1,5 @@
+import { Catalog } from "./Catalog";
+
 export class Gestion {
   public idFile: number;
   public uuid: string;
@@ -12,4 +14,11 @@ export class Gestion {
   public fechaCancelacion: Date;
   public fileName: string;
   public dateCreation: Date;
+  public idTipoPago: number;
+  public tipoPagoDescription: string;
+  public idFormaPago: number;
+  public formaPagoDescripcion: string;
+
+  public tipoPago: Catalog;
+  public formaPago: Catalog;
 }

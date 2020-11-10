@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table } from 'primeng/table';
 import { environment } from '../../../../environments/environment';
+import { Catalog } from '../../../models/Catalog';
+import { Gestion } from '../../../models/Gestion';
+import { CatalogService } from '../../../services/catalog/catalog.service';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -25,9 +29,12 @@ export class GestionComponent implements OnInit {
 
   cities: any[];
   selectedCity1: any;
+  catalogs: any;
+  tipoPago: any[];
+  formaPago: any[];
 
   @ViewChild('dt') table: Table;
-  constructor() { }
+  constructor(private catalogService: CatalogService, private messageService: MessageService) { }
 
   ngOnInit(): void {
 
@@ -48,6 +55,8 @@ export class GestionComponent implements OnInit {
       { name: 'Recibidos', option: '2' },
       { name: 'Nómina', option: '3' }
     ];
+
+    this.getCatalogs();
 
   }
 
@@ -86,5 +95,74 @@ export class GestionComponent implements OnInit {
   }
 
   FilterData() { }
+
+  getCatalogs() {
+    let data = [
+      {
+        Name: "CatalogNames",
+        Value: ["tbl_WayToPaySAT", "tbl_PaymenMethodSAT"]
+      },
+      {
+        Name: "CatalogIds",
+        Value: ["1", "2"]
+      }
+    ];
+    this.catalogService.get(data,
+      (response: Models.Response<any>) => {
+        if (response.success) {
+          this.catalogs = response.responseData;
+          this.tipoPago = this.catalogs.tbl_PaymenMethodSAT.map(
+            (permissionStatus: any) => {
+              return {
+                id: permissionStatus.IdPaymenMethod,
+                description: permissionStatus.Description
+              };
+            }
+          );
+          this.formaPago = this.catalogs.tbl_WayToPaySAT.map(
+            (permissionType: any) => {
+              return {
+                id: permissionType.IdWayToPay,
+                description: permissionType.Description
+              };
+            }
+          );
+          //this.permissionService.get(
+          //  (resp: Models.Response<Gestion[]>) => {
+          //    if (resp.success) {
+          //      resp.responseData.forEach(
+          //        (permission, index) => {
+          //          permission.tipoPago = new Catalog();
+          //          permission.tipoPago.id = permission.idTipoPago;
+          //          permission.tipoPago.description = permission.tipoPagoDescription;
+          //          permission.formaPago = new Catalog();
+          //          permission.formaPago.id = permission.idFormaPago;
+          //          permission.formaPago.description = permission.formaPagoDescripcion;
+          //        }
+          //      )
+          //      this.permissions = resp.responseData;
+          //    }
+          //    else {
+          //      this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
+          //    }
+          //    this.loading = false;
+          //  },
+          //  (error: any) => {
+          //    this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+          //    this.loading = false;
+          //  }
+          //);
+        }
+        else {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: response.message });
+          this.loading = false;
+        }
+      },
+      (error: any) => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+        this.loading = false;
+      }
+    );
+  }
 
 }

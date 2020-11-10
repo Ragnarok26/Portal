@@ -57,6 +57,7 @@ import { PanelComponent } from './components/panel/panel.component';
 import { OperationService } from './services/operation/operation.service';
 import { GestionComponent } from './components/operation/gestion/gestion.component';
 import { CreateComponent } from './components/user/create/create.component';
+import { CatalogService } from './services/catalog/catalog.service';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { CreateComponent } from './components/user/create/create.component';
     AuthenticationService,
     ConfirmationService,
     OperationService,
+    CatalogService,
     // {
     //   provide: 'BASE_URL',
     //   useFactory: getBaseUrl

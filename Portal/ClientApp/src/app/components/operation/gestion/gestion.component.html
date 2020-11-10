@@ -19,14 +19,18 @@
 </div>
 
 <div class="ui-g-12 ui-md-6 ui-lg-2">
-  <p-dropdown placeholder="Tipo de pago" [style]="{'width':'100%'}">
+  <p-dropdown placeholder="Tipo de pago" [style]="{'width':'100%'}" 	name="Tipo"
+								[options]="tipoPago"
+								optionLabel="description">
     <!--<ng-template let-option pTemplate="item">-->
     <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
     <!--</ng-template>-->
   </p-dropdown>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-2">
-  <p-dropdown placeholder="Forma de pago" [style]="{'width':'100%'}">
+  <p-dropdown placeholder="Forma de pago" [style]="{'width':'100%'}" name="Tipo"
+								[options]="formaPago"
+								optionLabel="description">>
     <!--<ng-template let-option pTemplate="item">-->
     <!--<span [class]="'customer-badge status-' + option.value">{{option.label}}</span>-->
     <!--</ng-template>-->
