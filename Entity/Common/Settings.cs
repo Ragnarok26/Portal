@@ -18,6 +18,8 @@ namespace Entity.Common
         /// </summary>
         public string Env { get; set; }
 
+        public string PathCDFIFiles { get; set; }
+
         private AppEnvironment environment;
         /// <summary>
         /// 

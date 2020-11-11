@@ -35,6 +35,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker Orchestrator", "Dock
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FE60C2C6-581E-41CA-8A25-B96B2757E48E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerServiceBackground", "..\WorkerServiceBackground\WorkerServiceBackground.csproj", "{6E9AB462-FD4F-4D9B-BC7A-144D24F60702}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Worker", "Worker", "{5046D0BF-9C1D-49CD-8DC8-D2DF6D63F3FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{FE60C2C6-581E-41CA-8A25-B96B2757E48E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE60C2C6-581E-41CA-8A25-B96B2757E48E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE60C2C6-581E-41CA-8A25-B96B2757E48E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E9AB462-FD4F-4D9B-BC7A-144D24F60702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E9AB462-FD4F-4D9B-BC7A-144D24F60702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E9AB462-FD4F-4D9B-BC7A-144D24F60702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E9AB462-FD4F-4D9B-BC7A-144D24F60702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +94,7 @@ Global
 		{47A994DB-F37A-49E2-8141-5F0133255F7D} = {19BE1EF9-1E86-430E-AC2A-B2771BA89771}
 		{57733F54-C294-489C-9481-263386E1AE1C} = {3F324298-6090-4E69-A621-FCEAB65750F9}
 		{FE60C2C6-581E-41CA-8A25-B96B2757E48E} = {FE54B8EC-13F9-434E-BBFD-BCCFDA58589A}
+		{6E9AB462-FD4F-4D9B-BC7A-144D24F60702} = {5046D0BF-9C1D-49CD-8DC8-D2DF6D63F3FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0709B39A-185A-4083-8B5D-6ACF899B0BE2}
