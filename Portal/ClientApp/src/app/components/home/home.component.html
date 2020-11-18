@@ -1,12 +1,12 @@
-<div style="width: 100%;">
-  <div [@slideInOut]="menuState" id="mySidenav" class="sidenav">
+<div class="ui-g-12 ui-md-12 ui-lg-12">
+  <div [@slideInOut]="menuState" id="mySidenav" class="sidenav ui-g-1 ui-md-1 ui-lg-1">
     <app-side-menu #sideMenu (click)="onmenuchange($event)"></app-side-menu>
   </div>
-  <div class="mainContainer">
+  <div class="mainContainer ui-g-11 ui-md-11 ui-lg-11">
     <!--<p-button (click)="toggleMenu()" icon="pi pi-bars" class="p-button-secondary"></p-button>-->
     <app-top-menu></app-top-menu>
 
-    <div class="ui-g">
+    <div class="ui-g ui-g-12 ui-md-12 ui-lg-12">
       <div class="ui-g">
         <!--<ng-template pTemplate="header">-->
         <app-gestion *ngIf="filterGestion"></app-gestion>
@@ -14,7 +14,7 @@
         <app-conciliation *ngIf="filterConciliation"></app-conciliation>
       </div>
       <div class="ui-g">
-        <div class="ui-g-12 ui-md-12 ui-lg-12" >
+        <div class="ui-g-12 ui-md-12 ui-lg-12">
           <app-panel #panel [items]="tabs" [cols]="cols"></app-panel>
         </div>
       </div>

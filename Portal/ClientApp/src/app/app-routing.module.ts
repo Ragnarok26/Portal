@@ -10,7 +10,8 @@ import { CreateComponent } from './components/user/create/create.component';
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    pathMatch: 'full'
   },
   {
     path: 'home',

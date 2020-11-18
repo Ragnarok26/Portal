@@ -10,6 +10,7 @@ import { User } from '../../models/User';
 import { MessageService } from 'primeng/api';
 import { Operation } from '../../models/enumoperation';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
   filterConciliation: boolean = false;
   filterAudit: boolean = false;
 
-  constructor(public operationService: OperationService, public messageService: MessageService) {
+  constructor(public operationService: OperationService, public messageService: MessageService, private router: Router) {
   }
 
   ngOnInit() {
@@ -65,96 +66,97 @@ export class HomeComponent implements OnInit {
     let option = target.textContent;
 
     let userForm = new User();
+    if (this.sessionStorage.getItem('currentUser') != null) {
+      this.currentUser = JSON.parse(this.sessionStorage.getItem('currentUser')).forEach((item: User) => {
+        userForm = item;
+      });
 
-    this.currentUser = JSON.parse(this.sessionStorage.getItem('currentUser')).forEach((item: User) => {
-      userForm = item;
-    });
+      console.log(this.sessionStorage.getItem("email"));
 
-    console.log(this.sessionStorage.getItem("email"));
+      this.cols.length = 0;
+      let title: string;
+      let userLogin: User[] = [userForm];
 
-    this.cols.length = 0;
-    let title: string;
-    let userLogin: User[] = [userForm];
-
-    switch (option) {
-      case Operation.Gestion: {
-        this.filterGestion = true;
-        this.filterConciliation = false;
-        this.filterAudit = false;
-        this.operationService.getGestion(
-          userLogin,
-          (resp: Models.Response<Gestion[]>) => {
-            if (resp.success) {
-              this.tabs = resp.responseData;
-              for (const key in resp.responseData[0]) {
-                for (const header in environment.labelsTableGestion[0]) {
-                  if (header == key) {
-                    title = environment.labelsTableGestion[0][header];
-                    console.log(environment.labelsTableGestion[0][header]);
+      switch (option) {
+        case Operation.Gestion: {
+          this.filterGestion = true;
+          this.filterConciliation = false;
+          this.filterAudit = false;
+          this.operationService.getGestion(
+            userLogin,
+            (resp: Models.Response<Gestion[]>) => {
+              if (resp.success) {
+                this.tabs = resp.responseData;
+                for (const key in resp.responseData[0]) {
+                  for (const header in environment.labelsTableGestion[0]) {
+                    if (header == key) {
+                      title = environment.labelsTableGestion[0][header];
+                      console.log(environment.labelsTableGestion[0][header]);
+                    }
                   }
+                  this.cols.push({ field: key, header: title });
                 }
-                this.cols.push({ field: key, header: title });
               }
+              else {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
+              }
+              this.loading = false;
+            },
+            (error: any) => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
+              this.loading = false;
             }
-            else {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: resp.message });
-            }
-            this.loading = false;
-          },
-          (error: any) => {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: JSON.stringify(error, null, 4) });
-            this.loading = false;
-          }
-        );
-        break;
-      }
-      case Operation.Conciliation: {
-        this.filterGestion = false;
-        this.filterConciliation = true;
-        this.filterAudit = false;
-        this.cols = [
-          { field: 'code', header: 'Code' },
-          { field: 'name', header: 'Name' },
-          { field: 'category', header: 'Category' },
-          { field: 'quantity', header: 'Quantity' }
-        ];
+          );
+          break;
+        }
+        case Operation.Conciliation: {
+          this.filterGestion = false;
+          this.filterConciliation = true;
+          this.filterAudit = false;
+          this.cols = [
+            { field: 'code', header: 'Code' },
+            { field: 'name', header: 'Name' },
+            { field: 'category', header: 'Category' },
+            { field: 'quantity', header: 'Quantity' }
+          ];
 
-        this.tabs = [
-          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
-          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
-          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
-          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
-          { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' }
-        ];
-        //statements; 
-        break;
-      }
-      case Operation.Audit: {
-        this.filterGestion = false;
-        this.filterConciliation = false;
-        this.filterAudit = true;
-        this.cols = [
-          { field: 'code', header: 'Code' },
-          { field: 'name', header: 'Name' },
-          { field: 'category', header: 'Category' },
-          { field: 'quantity', header: 'Quantity' }
-        ];
+          this.tabs = [
+            { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+            { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+            { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+            { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' },
+            { code: 'code1', name: 'name1', category: 'category1', quantity: 'quantity1' }
+          ];
+          //statements; 
+          break;
+        }
+        case Operation.Audit: {
+          this.filterGestion = false;
+          this.filterConciliation = false;
+          this.filterAudit = true;
+          this.cols = [
+            { field: 'code', header: 'Code' },
+            { field: 'name', header: 'Name' },
+            { field: 'category', header: 'Category' },
+            { field: 'quantity', header: 'Quantity' }
+          ];
 
-        this.tabs = [
-          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
-          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
-          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
-          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
-          { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' }
-        ];
-        //statements; 
-        break;
+          this.tabs = [
+            { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+            { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+            { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+            { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' },
+            { code: 'code1122', name: 'name1122', category: 'category1122', quantity: 'quantity1' }
+          ];
+          //statements; 
+          break;
+        }
+        default: {
+          //statements; 
+          break;
+        }
       }
-      default: {
-        //statements; 
-        break;
-      }
-    }
+    } else { this.router.navigate(['/login']); }
 
   }
 }
